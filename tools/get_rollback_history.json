@@ -1,0 +1,53 @@
+{
+  "name": "get_rollback_history",
+  "description": "Consulta histórico de rollbacks em GMUDs anteriores que envolvem sistemas similares. Usado para identificar padrões de falha e cenários de risco.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "sistemas": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "Lista de sistemas afetados para buscar rollbacks similares"
+      },
+      "periodo_meses": {
+        "type": "integer",
+        "description": "Quantidade de meses pra trás na busca (default: 12)",
+        "default": 12
+      },
+      "limit": {
+        "type": "integer",
+        "description": "Número máximo de resultados",
+        "default": 10
+      }
+    },
+    "required": ["sistemas"]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "total_encontrados": { "type": "integer" },
+      "rollbacks": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "gmud_id": { "type": "string" },
+            "data": { "type": "string", "format": "date" },
+            "sistemas_afetados": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "causa_raiz": { "type": "string" },
+            "categoria_falha": {
+              "type": "string",
+              "enum": ["timeout", "integracao", "dados", "performance", "config", "outro"]
+            },
+            "impacto": { "type": "string" },
+            "tempo_retrabalho_horas": { "type": "number" },
+            "licoes_aprendidas": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

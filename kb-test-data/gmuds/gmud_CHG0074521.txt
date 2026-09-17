@@ -1,0 +1,33 @@
+GMUD: CHG0074521
+Título: Atualização da API de PIX - Novo formato de chave aleatória
+Data de criação: 2026-09-01
+Janela de execução: 15/Set/2026 02:00-04:00
+Status: Planejada
+Tipo de mudança: Normal
+Responsável: João Silva
+Sistemas afetados: API Gateway, Core Banking, Módulo PIX, Anti-Fraude
+
+Descrição:
+Deploy da versão 3.2.0 do módulo PIX que adiciona suporte ao novo formato de chave aleatória conforme regulamentação BACEN. Inclui alteração na validação de input e no formato de resposta da API. A mudança impacta o endpoint /pix/v3/keys que recebe requisições de criação e consulta de chaves PIX.
+
+Alterações técnicas:
+- Novo regex de validação para chave aleatória (formato UUID v7)
+- Alteração no schema de resposta da API (campo "key_format" adicionado)
+- Atualização da lib pix-core de 2.1.0 para 2.3.0
+- Nova regra no Anti-Fraude para validar formato de chave antes de processar
+
+Repositórios:
+- https://git.bmg.internal/core-banking/modulo-pix/pull/342
+- https://git.bmg.internal/infra/api-gateway-config/pull/89
+
+Plano de rollback:
+1. Reverter deploy da API PIX para versão 3.1.2 via pipeline Jenkins
+2. Restaurar configuração do API Gateway (route /pix/v3)
+3. Invalidar cache do Redis (cluster pix-prod)
+4. Validar health check dos endpoints
+5. Notificar equipe de operações
+
+Dependências:
+- Módulo Anti-Fraude precisa estar na versão >= 4.5.0
+- Cache Redis precisa ter sido limpo antes do deploy
+- API Gateway precisa de reload de configuração após deploy

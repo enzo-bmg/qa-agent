@@ -1,0 +1,50 @@
+{
+  "name": "get_score_info",
+  "description": "Calcula um score de risco para a GMUD baseado em fatores como: complexidade dos sistemas, histórico de rollback, janela de execução e volume de mudanças.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "gmud_id": {
+        "type": "string",
+        "description": "Identificador da GMUD"
+      },
+      "sistemas_afetados": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "Sistemas envolvidos (usado caso a GMUD não esteja indexada)"
+      }
+    },
+    "required": ["gmud_id"]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "gmud_id": { "type": "string" },
+      "score_risco": {
+        "type": "number",
+        "description": "Score de 0 a 100 (0 = baixo risco, 100 = alto risco)"
+      },
+      "nivel_risco": {
+        "type": "string",
+        "enum": ["baixo", "medio", "alto", "critico"]
+      },
+      "fatores": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "fator": { "type": "string" },
+            "peso": { "type": "number" },
+            "valor": { "type": "string" },
+            "contribuicao_score": { "type": "number" }
+          }
+        },
+        "description": "Breakdown dos fatores que compõem o score"
+      },
+      "recomendacao": {
+        "type": "string",
+        "description": "Recomendação baseada no score (ex: requer testes adicionais, baixa prioridade, etc.)"
+      }
+    }
+  }
+}

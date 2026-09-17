@@ -1,0 +1,34 @@
+ROLLBACK: RB-2026-001
+GMUD associada: CHG0071234
+Data do rollback: 10/Jul/2026
+Sistemas afetados: Core Banking, Módulo PIX, API Gateway
+Categoria da falha: Timeout / Integração
+
+Causa raiz:
+Timeout na integração com sistema legado de cartões. O novo endpoint chamava o mainframe com payload maior que o suportado (8KB vs limite de 4KB do mainframe), causando timeout após 30s e cascateando para o API Gateway que retornava 504 ao cliente.
+
+O problema não foi detectado em homologação porque o ambiente de testes usa um mock do mainframe que aceita qualquer tamanho de payload.
+
+Impacto:
+- Indisponibilidade do PIX por 23 minutos em horário de pico (10h-10h23)
+- ~3.400 transações PIX falharam
+- Impacto financeiro estimado: R$ 85K em transações não processadas
+
+Tempo de retrabalho: 18 horas
+- 4h de investigação (identificar que era o payload)
+- 2h de correção (truncar payload + adicionar validação)
+- 4h de testes em homologação
+- 2h de re-deploy com nova janela emergencial
+- 6h de monitoramento pós-deploy
+
+Lições aprendidas:
+- SEMPRE validar tamanho de payload com sistemas legados antes do deploy
+- Mocks de homologação devem replicar limitações reais do sistema (tamanho de mensagem, timeout, rate limit)
+- Incluir teste de carga com cenários de integração no plano de homologação
+- Adicionar validação de tamanho de payload na camada de aplicação (fail fast)
+
+Cenários de teste que teriam detectado:
+- Teste de integração com payload no limite (4KB exatos)
+- Teste de integração com payload acima do limite (>4KB)
+- Teste de timeout com latência simulada no mainframe
+- Teste de cascata: o que acontece quando mainframe não responde em 30s?

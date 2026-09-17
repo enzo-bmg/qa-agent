@@ -1,0 +1,36 @@
+ROLLBACK: RB-2026-005
+GMUD associada: CHG0067800
+Data do rollback: 28/Fev/2026
+Sistemas afetados: Core Banking, API Gateway, Cache Redis
+Categoria da falha: Performance / Memória
+
+Causa raiz:
+Nova versão da API consumia 3x mais memória no Redis por conta de mudança no formato de serialização. A versão anterior usava MessagePack (compacto), a nova usava JSON (legível mas 3x maior). O cluster Redis (3 nós, 8GB cada) atingiu 95% de memória e começou a fazer eviction de chaves ativas (política allkeys-lru).
+
+Com eviction de chaves ativas, requisições que dependiam de cache passaram a ir direto no banco Oracle, que não estava dimensionado para esse volume (10x mais queries). Resultado: degradação geral de todas as APIs.
+
+Impacto:
+- Degradação de performance em todas as APIs por 30 minutos
+- Latência média: 200ms → 2.5s
+- Timeout em 8% das requisições
+- Afetou todos os canais: app, internet banking, APIs parceiras
+
+Tempo de retrabalho: 6 horas
+- 1h de investigação (correlação entre deploy e aumento de memória Redis)
+- 30min de rollback
+- 2h de flush seletivo do cache (invalidar chaves com formato novo)
+- 2.5h de monitoramento e warmup do cache
+
+Lições aprendidas:
+- Incluir análise de consumo de memória/cache no plano de testes
+- Monitorar Redis durante deploy progressivo (canary)
+- Mudanças de serialização = GMUD de alto risco (impacta memória e rede)
+- Ter alerta em 80% de memória Redis (não esperar 95%)
+- Calcular: volume de chaves × novo tamanho médio < capacidade do cluster
+
+Cenários de teste que teriam detectado:
+- Teste de carga: simular volume de produção e medir consumo de memória Redis
+- Teste comparativo: medir tamanho de payload Redis antes/depois da mudança
+- Teste de eviction: o que acontece quando Redis atinge 90%? 95%?
+- Teste de fallback: quando cache faz eviction, o banco aguenta a carga extra?
+- Capacity planning: nova serialização cabe na memória atual?

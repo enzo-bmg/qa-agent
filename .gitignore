@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+
+# ChromaDB (gerado localmente)
+chroma_db/
+
+# Node
+node_modules/
+
+# AgentCore CLI
+agentcore/.cli/
+
+# Env (pode ter secrets futuros)
+# agentcore/.env.local  -- manter por agora (não tem secrets)
+
+# OS
+.DS_Store

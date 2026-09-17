@@ -1,0 +1,33 @@
+ROLLBACK: RB-2026-002
+GMUD associada: CHG0070891
+Data do rollback: 22/Jun/2026
+Sistemas afetados: Módulo PIX, Anti-Fraude
+Categoria da falha: Configuração
+
+Causa raiz:
+Regra de anti-fraude bloqueou transações PIX legítimas após atualização dos thresholds. O modelo de ML foi retreinado mas os novos limites de score não foram validados com dados de produção reais. O threshold foi reduzido de 0.75 para 0.60, o que deveria melhorar a detecção, mas acabou classificando transações normais de alto valor como suspeitas.
+
+O ambiente de homologação tinha dados de transações com distribuição diferente da produção (valores menores, sem sazonalidade), então os testes passaram.
+
+Impacto:
+- 15% das transações PIX rejeitadas indevidamente por 45 minutos
+- ~1.200 transações bloqueadas incorretamente
+- Reclamações de clientes no SAC (pico de 340 chamadas em 1h)
+
+Tempo de retrabalho: 8 horas
+- 1h para identificar o problema (correlação entre deploy e aumento de rejeições)
+- 30min para rollback da configuração
+- 2h para reprocessar transações bloqueadas
+- 4.5h para validar novo threshold com dados de produção
+
+Lições aprendidas:
+- Validar mudanças em regras de fraude com shadow mode antes de ativar
+- Usar dados de produção anonimizados para testar modelos de ML
+- Incluir cenário de falso-positivo no plano de testes (transações legítimas de alto valor)
+- Deploy progressivo (canary) para mudanças em modelos de ML — ativar para 5% do tráfego primeiro
+
+Cenários de teste que teriam detectado:
+- Teste com transações legítimas de alto valor (>R$ 5K)
+- Teste com perfis de clientes que fazem transações atípicas (mas legítimas)
+- Shadow mode: rodar modelo novo em paralelo sem bloquear, comparar resultados
+- Teste de taxa de rejeição: se >5% das transações são rejeitadas, algo está errado

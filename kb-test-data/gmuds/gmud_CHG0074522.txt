@@ -1,0 +1,34 @@
+GMUD: CHG0074522
+Título: Migração de banco de dados - Módulo de Empréstimos
+Data de criação: 2026-09-03
+Janela de execução: 17/Set/2026 01:00-05:00
+Status: Planejada
+Tipo de mudança: Normal
+Responsável: Maria Santos
+Sistemas afetados: Módulo Empréstimos, Database Oracle, Batch Noturno, BI/Analytics
+
+Descrição:
+Migração do schema do banco de dados Oracle para suportar novos campos de compliance LGPD no módulo de empréstimos consignados. Inclui scripts DDL, migração de dados existentes e atualização da camada ORM da aplicação. Aproximadamente 12 milhões de registros serão atualizados.
+
+Alterações técnicas:
+- ALTER TABLE emprestimos_consignado ADD COLUMN (consentimento_lgpd, data_consentimento, finalidade_tratamento)
+- Script de migração de dados para popular campos em registros existentes
+- Atualização do ORM Hibernate (mapeamento de novas colunas)
+- Novo índice composto em (cpf, data_consentimento) para queries de auditoria
+- Alteração no batch noturno de conciliação para incluir novos campos no relatório
+
+Repositórios:
+- https://git.bmg.internal/emprestimos/consignado/pull/201
+- https://git.bmg.internal/dba/migrations/pull/55
+
+Plano de rollback:
+1. Executar script de rollback DDL (rollback_v2.4.sql)
+2. Restaurar backup do tablespace EMPRESTIMOS_PROD
+3. Reverter deploy da aplicação para versão 2.3.8
+4. Validar integridade dos dados com script de verificação
+5. Re-executar batch de conciliação
+
+Riscos identificados:
+- Janela de 4h pode não ser suficiente para migrar 12M registros
+- Lock exclusivo na tabela durante ALTER TABLE pode impactar batch noturno
+- Índice composto pode demorar mais que o esperado em tabela grande

@@ -1,0 +1,35 @@
+GMUD: CHG0074524
+Título: Refatoração do Batch Noturno de Conciliação
+Data de criação: 2026-09-05
+Janela de execução: 20/Set/2026 23:00-03:00
+Status: Planejada
+Tipo de mudança: Normal
+Responsável: Ana Ferreira
+Sistemas afetados: Batch Noturno, Database Oracle, BI/Analytics, Core Banking
+
+Descrição:
+Refatoração do job de conciliação noturna para processar em paralelo (multithreading). Atualmente o batch processa sequencialmente ~2.5M transações e leva 4h. Com a refatoração, espera-se reduzir para 1.5h, liberando janela para outros jobs. Mudança envolve alteração na lógica de particionamento e no controle de transações.
+
+Alterações técnicas:
+- Migração de processamento sequencial para ThreadPoolExecutor (8 threads)
+- Particionamento por faixa de conta (hash % 8)
+- Novo controle de transação: commit a cada 10K registros (antes era 100K)
+- Adição de dead letter queue para registros com falha
+- Dashboard Grafana para monitorar throughput em tempo real
+- Novo arquivo de configuração batch-conciliacao.yml
+
+Repositórios:
+- https://git.bmg.internal/batch/conciliacao/pull/67
+- https://git.bmg.internal/infra/batch-config/pull/23
+
+Plano de rollback:
+1. Desativar novo job no scheduler (cron)
+2. Reativar job antigo (sequencial)
+3. Verificar se registros processados pelo novo job estão íntegros
+4. Se necessário, re-executar conciliação completa com job antigo
+
+Riscos identificados:
+- Race condition no acesso concorrente à tabela de saldos
+- Deadlock potencial se duas threads tentarem atualizar mesma conta
+- Consumo de memória pode exceder heap configurado (4GB)
+- Se falhar no meio, registros parcialmente processados podem gerar inconsistência

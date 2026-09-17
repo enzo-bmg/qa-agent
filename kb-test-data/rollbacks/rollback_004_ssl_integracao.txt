@@ -1,0 +1,35 @@
+ROLLBACK: RB-2026-004
+GMUD associada: CHG0068200
+Data do rollback: 15/Mar/2026
+Sistemas afetados: Onboarding Digital, Integração SERPRO, API Gateway
+Categoria da falha: Integração / Certificado
+
+Causa raiz:
+Atualização da lib de HTTP client (OkHttp 4.9 → 4.12) quebrou compatibilidade com certificado mTLS do SERPRO. A versão nova do OkHttp mudou o comportamento de validação de certificados intermediários, rejeitando a chain do SERPRO que usa um CA intermediário com extensão não-padrão.
+
+O teste de integração em homologação usa mocks do SERPRO (WireMock) que não replicam a chain de certificados real.
+
+Impacto:
+- Abertura de contas digitais indisponível por 2 horas
+- ~480 tentativas de abertura de conta falharam
+- NPS da jornada de onboarding caiu 12 pontos na semana
+
+Tempo de retrabalho: 12 horas
+- 2h de investigação (identificar que era SSL handshake)
+- 1h de rollback da lib
+- 3h para encontrar solução compatível (pinagem de certificado manual)
+- 4h de testes com certificados reais do SERPRO
+- 2h de re-deploy
+
+Lições aprendidas:
+- Manter testes de integração com certificados reais (não mocks) no pipeline
+- Antes de atualizar libs HTTP, verificar changelog de breaking changes em TLS/SSL
+- Validar compatibilidade de libs HTTP com mTLS em ambiente de staging
+- Ter ambiente de staging que conecta no SERPRO de homologação (não mock)
+- Fazer bump de libs HTTP em GMUD separada (não junto com features)
+
+Cenários de teste que teriam detectado:
+- Teste de SSL handshake com endpoint real do SERPRO (homologação)
+- Teste com certificados com chains longas e CAs intermediários
+- Teste de regressão: atualizar lib HTTP e rodar suite de integração completa
+- Validação de certificados: listar todos os endpoints que usam mTLS e testar cada um

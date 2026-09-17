@@ -1,0 +1,48 @@
+{
+  "name": "get_gmud_metadata",
+  "description": "Obtém os metadados de uma GMUD (Gestão de Mudança) do ServiceNow. Retorna informações como sistemas afetados, descrição da mudança, janela de execução e plano de rollback.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "gmud_id": {
+        "type": "string",
+        "description": "Identificador da GMUD no ServiceNow (ex: GMUD-2026-001 ou CHG0012345)"
+      }
+    },
+    "required": ["gmud_id"]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "gmud_id": { "type": "string" },
+      "titulo": { "type": "string" },
+      "descricao": { "type": "string" },
+      "sistemas_afetados": {
+        "type": "array",
+        "items": { "type": "string" }
+      },
+      "tipo_mudanca": {
+        "type": "string",
+        "enum": ["normal", "emergencial", "padrao"]
+      },
+      "janela_execucao": {
+        "type": "object",
+        "properties": {
+          "inicio": { "type": "string", "format": "date-time" },
+          "fim": { "type": "string", "format": "date-time" }
+        }
+      },
+      "responsavel": { "type": "string" },
+      "plano_rollback": { "type": "string" },
+      "repositorios": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "URLs dos PRs/repos relacionados à mudança"
+      },
+      "status": {
+        "type": "string",
+        "enum": ["planejada", "em_execucao", "concluida", "rollback"]
+      }
+    }
+  }
+}

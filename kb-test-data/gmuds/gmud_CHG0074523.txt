@@ -1,0 +1,31 @@
+GMUD: CHG0074523
+Título: Hotfix - Timeout na integração com SERPRO
+Data de criação: 2026-09-08
+Janela de execução: 10/Set/2026 14:00-15:00
+Status: Planejada
+Tipo de mudança: Emergencial
+Responsável: Carlos Oliveira
+Sistemas afetados: Onboarding Digital, Integração SERPRO, API Gateway
+
+Descrição:
+Correção emergencial do timeout na consulta de CPF via SERPRO. Problema impacta 12% das aberturas de conta digital desde a última atualização do SERPRO (que aumentou latência de 2s para 8s em horários de pico). A correção aumenta timeout de 5s para 15s e adiciona retry com backoff exponencial.
+
+Alterações técnicas:
+- Timeout HTTP client: 5000ms → 15000ms
+- Adição de retry policy: 3 tentativas com backoff exponencial (1s, 2s, 4s)
+- Circuit breaker: abre após 5 falhas consecutivas, half-open após 30s
+- Novo endpoint de health check que valida conectividade com SERPRO
+- Log estruturado para monitorar latência por request
+
+Repositórios:
+- https://git.bmg.internal/digital/onboarding-api/pull/178
+
+Plano de rollback:
+1. Reverter deploy do serviço onboarding-api para versão anterior
+2. Restaurar configuração de timeout original no API Gateway
+3. Monitorar taxa de erro por 15 minutos
+
+Justificativa da emergência:
+- 12% das aberturas de conta falhando = ~240 clientes/dia impactados
+- Receita estimada perdida: R$ 35K/dia em novas contas
+- SLA com área de negócios exige resolução em 24h

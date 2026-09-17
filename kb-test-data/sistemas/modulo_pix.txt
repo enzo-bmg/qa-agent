@@ -1,0 +1,33 @@
+Sistema: Módulo PIX
+Criticidade: Alta (regulatório BACEN + volume financeiro)
+Última atualização: Ago/2026
+
+Descrição:
+O Módulo PIX é responsável por todas as operações de pagamento instantâneo do BMG: envio, recebimento, devolução, gestão de chaves e relatórios regulatórios ao BACEN. Processa ~2.5M transações/dia em horário de pico.
+
+Componentes:
+- pix-api (Java/Spring Boot): API REST que recebe requisições dos canais (app, internet banking, APIs parceiras)
+- pix-processor (Java/Spring Boot): Serviço que processa as transações, validações e comunica com o SPI/BACEN
+- pix-keys (Python/FastAPI): Serviço de gestão de chaves PIX (CRUD, portabilidade)
+- pix-scheduler (Python): Jobs agendados (relatórios BACEN, conciliação, liquidação)
+
+Integrações:
+- Core Banking → débito/crédito na conta (REST, síncrono)
+- Anti-Fraude → validação de transação antes de processar (REST, síncrono, timeout 50ms)
+- API Gateway → exposição dos endpoints para canais (ingress)
+- SPI/BACEN → envio e recebimento de mensagens PIX (ISO 20022, XML, mTLS)
+- Cache Redis → cache de chaves PIX e sessões (cluster pix-prod, 3 nós, 8GB cada)
+- Database Oracle → dados transacionais (tablespace PIX_PROD, ~50GB)
+- Kafka → eventos de transação para downstream (BI, compliance, notificações)
+
+Pontos críticos:
+- SLA BACEN: transação PIX deve ser processada em <10s end-to-end
+- Janela de manutenção: somente 00:00-06:00 (fora do horário de pico)
+- Anti-Fraude é chamado de forma síncrona — se cair, PIX para
+- Redis é single point of failure para cache de chaves — se eviction atingir chaves ativas, latência explode
+- Mudanças na API precisam ser backward-compatible (parceiros externos consomem)
+
+Histórico recente:
+- 4 rollbacks nos últimos 12 meses envolvendo este sistema
+- Principal causa: integração com sistemas legados (mainframe, SERPRO)
+- Segundo: mudanças em anti-fraude que impactam PIX indiretamente

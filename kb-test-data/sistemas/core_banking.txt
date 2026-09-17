@@ -1,0 +1,34 @@
+Sistema: Core Banking
+Criticidade: Crítica (coração do banco — todas as operações financeiras passam por aqui)
+Última atualização: Ago/2026
+
+Descrição:
+Sistema central do BMG que gerencia contas, saldos, movimentações, produtos financeiros e integração com o mainframe legado. Qualquer transação financeira (PIX, TED, empréstimo, débito, crédito) passa pelo Core Banking para efetivação.
+
+Componentes:
+- core-api (Java/Spring Boot): API de serviços bancários (saldos, extratos, movimentações)
+- core-ledger (Java): Motor contábil — lançamentos débito/crédito, partidas dobradas
+- core-mainframe-adapter (COBOL/Java): Bridge entre APIs modernas e mainframe IBM z/OS
+- core-events (Java/Kafka): Event sourcing de todas as movimentações
+
+Integrações:
+- Mainframe IBM z/OS → sistema legado de contabilidade (MQ Series, síncrono, limite payload 4KB)
+- Módulo PIX → débito/crédito em tempo real
+- Módulo Empréstimos → liberação e cobrança
+- Anti-Fraude → consulta de score antes de operações
+- Batch Noturno → fechamento diário, conciliação
+- BI/Analytics → feeds de dados para relatórios
+- Database Oracle → dados de contas e movimentações (tablespace CORE_PROD, ~200GB)
+- Cache Redis → cache de saldos e sessões
+
+Pontos críticos:
+- Mainframe tem limite de payload de 4KB — qualquer chamada que exceda falha silenciosamente ou com timeout
+- Mainframe suporta ~500 TPS — picos de demanda podem causar fila e degradação
+- Mudanças no ledger são irreversíveis após T+1 (D+1 o lançamento é consolidado)
+- Qualquer indisponibilidade do Core Banking = banco parado
+- Deploy exige janela de madrugada (02:00-05:00) e coordenação com equipe de mainframe
+
+Histórico recente:
+- 3 rollbacks nos últimos 12 meses
+- Principal causa: incompatibilidade de payload com mainframe
+- Segundo: mudanças de schema que impactam downstream (batch, BI)

@@ -1,0 +1,42 @@
+ROLLBACK: RB-2026-003
+GMUD associada: CHG0069555
+Data do rollback: 03/Mai/2026
+Sistemas afetados: Módulo Empréstimos, Database Oracle, Batch Noturno
+Categoria da falha: Dados / DDL
+
+Causa raiz:
+Script de migração DDL não considerou constraint de FK com tabela de clientes. O ALTER TABLE para adicionar nova coluna tentou adquirir lock exclusivo na tabela emprestimos_consignado (12M registros), mas a tabela estava sendo lida pelo batch noturno que já estava em execução. O lock ficou esperando por 20 minutos até estourar timeout do batch.
+
+Sequência do incidente:
+1. 01:15 - DDL iniciou, tentou lock exclusivo
+2. 01:15-01:35 - Lock em espera (batch rodando)
+3. 01:35 - Batch falhou por timeout de transação
+4. 01:36 - DDL adquiriu lock, iniciou ALTER
+5. 01:55 - ALTER completou
+6. 02:00 - Batch tentou re-executar, falhou por schema incompatível (ORM desatualizado)
+7. 02:30 - Decisão de rollback
+
+Impacto:
+- Batch noturno de empréstimos não executou
+- Atraso de 6h na conciliação diária
+- Relatórios de BI ficaram desatualizados até 08:00
+
+Tempo de retrabalho: 24 horas
+- 3h de investigação (entender cadeia de locks)
+- 2h de rollback DDL + restauração de backup parcial
+- 4h de re-execução do batch
+- 8h de validação de integridade dos dados
+- 7h de documentação e post-mortem
+
+Lições aprendidas:
+- Executar migrations com pt-online-schema-change (ou DBMS_REDEFINITION no Oracle) em tabelas grandes
+- NUNCA executar DDL durante janela de batch — verificar schedule antes
+- Testar script DDL em ambiente com volume de dados similar à produção
+- Incluir verificação de locks ativos antes de iniciar DDL
+- Batch e migration precisam estar na mesma GMUD se tocam a mesma tabela
+
+Cenários de teste que teriam detectado:
+- Teste de DDL em tabela com 10M+ registros (medir tempo de lock)
+- Teste de concorrência: DDL + batch rodando em paralelo
+- Validação de janela: o batch está rodando no horário da GMUD?
+- Teste de compatibilidade do ORM com schema novo antes do deploy da app

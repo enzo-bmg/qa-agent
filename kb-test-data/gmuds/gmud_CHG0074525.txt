@@ -1,0 +1,36 @@
+GMUD: CHG0074525
+Título: Atualização do modelo de Anti-Fraude - PIX
+Data de criação: 2026-09-07
+Janela de execução: 22/Set/2026 02:00-04:00
+Status: Planejada
+Tipo de mudança: Normal
+Responsável: Roberto Lima
+Sistemas afetados: Anti-Fraude, Módulo PIX, Core Banking, Cache Redis
+
+Descrição:
+Deploy do novo modelo de ML para detecção de fraude em transações PIX. O modelo v3.1 foi retreinado com dados dos últimos 6 meses e inclui novas features (dispositivo, geolocalização, horário). Espera-se redução de 15% nos falsos positivos mantendo a mesma taxa de detecção (98.5%).
+
+Alterações técnicas:
+- Substituição do modelo v2.8 pelo v3.1 (arquivo .onnx)
+- Novos features no pipeline de inferência: device_fingerprint, geo_distance, time_pattern
+- Threshold de score ajustado: 0.72 → 0.68 (menos conservador)
+- Cache Redis: novo TTL de 5min para scores (antes era 15min)
+- Fallback: se modelo v3.1 falhar, usa v2.8 automaticamente (feature flag)
+- Novo endpoint /fraud/v3/explain para explicabilidade do score
+
+Repositórios:
+- https://git.bmg.internal/fraude/ml-models/pull/45
+- https://git.bmg.internal/fraude/inference-api/pull/112
+- https://git.bmg.internal/fraude/feature-store/pull/28
+
+Plano de rollback:
+1. Ativar feature flag FRAUD_MODEL_FALLBACK=true (reverte pra v2.8)
+2. Invalidar cache Redis (scores calculados com modelo novo)
+3. Monitorar taxa de falso positivo por 30 minutos
+4. Se estabilizar, manter v2.8 até investigação
+
+Métricas de validação:
+- Falso positivo baseline (v2.8): 3.2%
+- Falso positivo esperado (v3.1): 2.7%
+- Taxa de detecção mínima aceitável: 97%
+- Latência máxima aceitável de inferência: 50ms p99
