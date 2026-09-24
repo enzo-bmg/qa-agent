@@ -1,0 +1,10 @@
+{
+  "titulo": "PIX: validação de chave aleatória para UUID v7 (BACEN)",
+  "branch_source": "feature/pix-uuid-v7",
+  "branch_target": "main",
+  "autor": "exemplo",
+  "arquivos_alterados": [
+    "src/pix/keys/validator.py",
+    "src/pix/keys/response.py"
+  ]
+}

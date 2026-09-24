@@ -1,0 +1,26 @@
+diff --git a/src/pix/keys/validator.py b/src/pix/keys/validator.py
+index a1b2c3d..e4f5g6h 100644
+--- a/src/pix/keys/validator.py
++++ b/src/pix/keys/validator.py
+@@ -12,8 +12,15 @@ class RandomKeyValidator:
+-    UUID_V4_PATTERN = re.compile(
+-        r"^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+-    )
++    # BACEN: chave aleatória passa a exigir UUID v7 (ordenável por tempo)
++    UUID_V7_PATTERN = re.compile(
++        r"^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
++    )
+ 
+     def validate(self, key_value: str) -> bool:
+-        return bool(self.UUID_V4_PATTERN.match(key_value))
++        return bool(self.UUID_V7_PATTERN.match(key_value))
+diff --git a/src/pix/keys/response.py b/src/pix/keys/response.py
+index 1122334..5566778 100644
+--- a/src/pix/keys/response.py
++++ b/src/pix/keys/response.py
+@@ -20,6 +20,7 @@ def build_key_response(key):
+         "key_type": key.type,
+         "key_value": key.value,
++        "key_format": "uuid_v7",
+         "status": key.status,
+     }
