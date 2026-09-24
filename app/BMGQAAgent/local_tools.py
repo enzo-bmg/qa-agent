@@ -218,6 +218,31 @@ def get_score_info(gmud_id: str, sistemas_afetados: list[str] = None) -> str:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
+# Tool 5: get_code_diff (modo local — Nível 2)
+# ─────────────────────────────────────────────────────────────────────────────
+
+@tool
+def get_code_diff(repo: str, change_id: str = "") -> str:
+    """Obtém o diff/arquivos alterados de uma mudança, dado o nome do repositório.
+
+    Habilita o Nível 2 (análise de código real). A GMUD linka ao código pelo
+    nome do repositório (campo "Ativos Associados", ex: "bmg.consig.mais.front").
+
+    Args:
+        repo: Nome do repositório / Ativo Associado da GMUD (ex: "bmg.consig.mais.front")
+        change_id: Opcional. ID da GMUD/PR para localizar o diff específico (ex: "CHN-11710").
+
+    Returns:
+        Diff da mudança (arquivos alterados) para o SubAgent Code Analysis avaliar.
+        Se não houver diff disponível, retorna aviso — nesse caso a análise fica
+        limitada à descrição textual da GMUD (Nível 1).
+    """
+    from get_code_diff.handler import lambda_handler
+    result = lambda_handler({"repo": repo, "change_id": change_id}, None)
+    return result["body"]
+
+
+# ─────────────────────────────────────────────────────────────────────────────
 # Lista de todas as tools locais
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -226,4 +251,5 @@ LOCAL_TOOLS = [
     get_gmud_metadata,
     get_rollback_history,
     get_score_info,
+    get_code_diff,
 ]
