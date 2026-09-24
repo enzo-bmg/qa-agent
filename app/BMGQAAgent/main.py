@@ -125,10 +125,27 @@ if USE_LOCAL_TOOLS:
     _INLINE_FUNCTION_NAMES = {t.tool_name for t in LOCAL_TOOLS if hasattr(t, 'tool_name')}
     log.info(f"Usando {len(LOCAL_TOOLS)} tools locais (ChromaDB + mocks)")
 else:
-    # Add MCP client to tools if available
+    # Add MCP tools to the agent (Gateway remoto).
+    # Filtra tools de sistema do AgentCore Gateway (prefixo x_amz_bedrock_agentcore)
+    # para não expô-las ao modelo — só as tools de negócio devem chegar ao agente.
+    SYSTEM_TOOL_PREFIX = "x_amz_bedrock_agentcore"
     for mcp_client in mcp_clients:
-        if mcp_client:
-            tools.append(mcp_client)
+        if not mcp_client:
+            continue
+        # list_tools_sync exige o client dentro do seu context manager
+        with mcp_client:
+            all_tools = mcp_client.list_tools_sync()
+        business_tools = [
+            t for t in all_tools
+            if not getattr(t, "tool_name", "").startswith(SYSTEM_TOOL_PREFIX)
+        ]
+        filtered = len(all_tools) - len(business_tools)
+        if filtered:
+            log.info(
+                "Filtradas %d tool(s) de sistema (prefixo %s) do Gateway",
+                filtered, SYSTEM_TOOL_PREFIX,
+            )
+        tools.extend(business_tools)
 
 
 def _make_conversation_manager():
