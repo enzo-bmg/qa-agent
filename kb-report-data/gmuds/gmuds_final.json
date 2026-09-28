@@ -1,0 +1,992 @@
+[
+    {
+        "gmud_id": "CHN-11710",
+        "titulo": "[Consig] - Integração completa visão 360",
+        "dt_criacao": "2026-06-01 10:49:29 AM",
+        "janela_execucao": {
+            "inicio": "2026-07-01 11:00:00 AM",
+            "fim": "2026-07-01 04:00:00 PM"
+        },
+        "status": "Não Executada",
+        "tipo_mudanca": "Pré-aprovada",
+        "sistemas_afetados": [
+            "ceat-visao-360-bff",
+            "ceat-atendimento-cartoes-bff",
+            "ceat-conta-corrente-360-bff"
+        ],
+        "descricao": "?? Descrição da GMUD     Esta mudança tem como objetivo a atualização da versão de três BFFs (Backend for Frontend) para contemplar a integração completa com o NOVO CONSIG     A mudança consiste em:   Atualização da configuração/integração nos seguintes BFFs:  ceat-visao-360-bff  ceat-atendimento-cartões-bff  ceat-conta-corrente-360-bff    Adequação para consumo da versão mais performática da API de conta corrente;  Garantia de compatibilidade com os contratos existentes;  Melhoria no tempo de resposta das consultas realizadas.      Não há alteração de regra de negócio, sendo esta uma melhoria técnica com foco em performance, estabilidade e eficiência operacional.",
+        "alteracoes_tecnicas": "?? Descrição da GMUD     Esta mudança tem como objetivo a atualização da versão de três BFFs (Backend for Frontend) para contemplar a integração completa com o NOVO CONSIG     A mudança consiste em:   Atualização da configuração/integração nos seguintes BFFs:  ceat-visao-360-bff  ceat-atendimento-cartões-bff  ceat-conta-corrente-360-bff    Adequação para consumo da versão mais performática da API de conta corrente;  Garantia de compatibilidade com os contratos existentes;  Melhoria no tempo de resposta das consultas realizadas.      Não há alteração de regra de negócio, sendo esta uma melhoria técnica com foco em performance, estabilidade e eficiência operacional.",
+        "repositorios": [
+            "ceat-visao-360-bff",
+            "ceat-atendimento-cartoes-bff",
+            "ceat-conta-corrente-360-bff"
+        ],
+        "plano_rollback": [],
+        "riscos_identificados": "Low"
+    },
+    {
+        "gmud_id": "CHN-11712",
+        "titulo": "Cópia - [Consig] - Integração completa visão 360",
+        "dt_criacao": "2026-06-01 11:54:43 AM",
+        "janela_execucao": {
+            "inicio": "2026-07-01 11:00:00 AM",
+            "fim": "2026-07-01 04:00:00 PM"
+        },
+        "status": "Não Executada",
+        "tipo_mudanca": "Pré-aprovada",
+        "sistemas_afetados": [
+            "ceat-atendimento-cartoes-bff",
+            "ceat-visao-360-bff",
+            "ceat-conta-corrente-360-bff"
+        ],
+        "descricao": "?? Descrição da GMUD\r\n \r\n   \r\n Esta mudança tem como objetivo a atualização da versão de três BFFs (Backend for Frontend) para contemplar a integração completa com o NOVO CONSIG\r\n \r\n   \r\n A mudança consiste em: \r\n \r\n Atualização da configuração/integração nos seguintes BFFs: \r\n ceat-visao-360-bff \r\n ceat-atendimento-cartões-bff \r\n ceat-conta-corrente-360-bff \r\n \r\n \r\n Adequação para consumo da versão mais performática da API de conta corrente; \r\n Garantia de compatibilidade com os contratos existentes; \r\n Melhoria no tempo de resposta das consultas realizadas. \r\n \r\n   \r\n Não há alteração de regra de negócio, sendo esta uma melhoria técnica com foco em performance, estabilidade e eficiência operacional.",
+        "alteracoes_tecnicas": "?? Descrição da GMUD\r\n \r\n   \r\n Esta mudança tem como objetivo a atualização da versão de três BFFs (Backend for Frontend) para contemplar a integração completa com o NOVO CONSIG\r\n \r\n   \r\n A mudança consiste em: \r\n \r\n Atualização da configuração/integração nos seguintes BFFs: \r\n ceat-visao-360-bff \r\n ceat-atendimento-cartões-bff \r\n ceat-conta-corrente-360-bff \r\n \r\n \r\n Adequação para consumo da versão mais performática da API de conta corrente; \r\n Garantia de compatibilidade com os contratos existentes; \r\n Melhoria no tempo de resposta das consultas realizadas. \r\n \r\n   \r\n Não há alteração de regra de negócio, sendo esta uma melhoria técnica com foco em performance, estabilidade e eficiência operacional.",
+        "repositorios": [
+            "ceat-atendimento-cartoes-bff",
+            "ceat-visao-360-bff",
+            "ceat-conta-corrente-360-bff"
+        ],
+        "plano_rollback": [],
+        "riscos_identificados": "Low"
+    },
+    {
+        "gmud_id": "CHN-11713",
+        "titulo": "V360 - Correção de limites, faturas e obrigatoriedade na autenticação",
+        "dt_criacao": "2026-06-01 01:48:22 PM",
+        "janela_execucao": {
+            "inicio": "2026-07-27 11:00:00 AM",
+            "fim": "2026-07-28 04:00:00 PM"
+        },
+        "status": "Executada Com Sucesso",
+        "tipo_mudanca": "Emergencial",
+        "sistemas_afetados": [
+            "ceat-visao-360-bff",
+            "ceat-atendimento-cartoes-bff",
+            "ceat-gerenciamento-cartao-front",
+            "pben-prova-vida-api"
+        ],
+        "descricao": "Descrição da Mudança – Correções e Ajustes no Sistema Visão 360  Objetivo: Realizar correções e ajustes de integração necessários para restabelecer o funcionamento adequado das consultas e serviços consumidos pelo sistema Visão 360, garantindo a disponibilidade das funcionalidades e a correta comunicação entre os componentes envolvidos.  Escopo da Mudança  1. ceat-atendimento-cartoes-bff   Inclusão do pathURL da aplicação Ajuste Limite na configuração do serviço.  Objetivo: permitir o correto roteamento e consumo da funcionalidade pelo Visão 360.   2. ceat-gerenciamento-cartoes-front   Adicionar CPF para autenticação em cartões e fatura  Objetivo: restabelecer o retorno da autenticação para ações transacionais   3. ceat-visao-360-bff   Análise e correção do erro na consulta de dados de Funcionário.  Objetivo: garantir a recuperação das informações cadastrais e funcionais sem inconsistências.   4. Integração de Propensão de Ofertas   Publicação da rota de Propensão de Ofertas para o client_id utilizado pelo Visão 360.  Objetivo: disponibilizar o serviço para consumo pela aplicação, permitindo acesso às ofertas recomendadas.   5. Ajustes de AKAMAI   Correção das liberações e configurações de proxy/cache relacionadas às rotas impactadas.  Atualização do path:           De:  /atendimento-fatura/v1  Para:  /atendimento-faturas/v1              Objetivo: garantir o encaminhamento correto das requisições e evitar falhas de acesso decorrentes de inconsistência na configuração das rotas.   Resultado Esperado   Normalização das consultas de Prova de Vida e Funcionário.  Disponibilização da funcionalidade de Ajuste de Limite no Visão 360.  Habilitação da rota de Propensão de Ofertas para o client_id da aplicação.  Correção dos direcionamentos configurados no AKAMAI, garantindo a comunicação adequada entre os serviços e o Visão 360.",
+        "alteracoes_tecnicas": "Descrição da Mudança – Correções e Ajustes no Sistema Visão 360  Objetivo: Realizar correções e ajustes de integração necessários para restabelecer o funcionamento adequado das consultas e serviços consumidos pelo sistema Visão 360, garantindo a disponibilidade das funcionalidades e a correta comunicação entre os componentes envolvidos.  Escopo da Mudança  1. ceat-atendimento-cartoes-bff   Inclusão do pathURL da aplicação Ajuste Limite na configuração do serviço.  Objetivo: permitir o correto roteamento e consumo da funcionalidade pelo Visão 360.   2. ceat-gerenciamento-cartoes-front   Adicionar CPF para autenticação em cartões e fatura  Objetivo: restabelecer o retorno da autenticação para ações transacionais   3. ceat-visao-360-bff   Análise e correção do erro na consulta de dados de Funcionário.  Objetivo: garantir a recuperação das informações cadastrais e funcionais sem inconsistências.   4. Integração de Propensão de Ofertas   Publicação da rota de Propensão de Ofertas para o client_id utilizado pelo Visão 360.  Objetivo: disponibilizar o serviço para consumo pela aplicação, permitindo acesso às ofertas recomendadas.   5. Ajustes de AKAMAI   Correção das liberações e configurações de proxy/cache relacionadas às rotas impactadas.  Atualização do path:           De:  /atendimento-fatura/v1  Para:  /atendimento-faturas/v1              Objetivo: garantir o encaminhamento correto das requisições e evitar falhas de acesso decorrentes de inconsistência na configuração das rotas.   Resultado Esperado   Normalização das consultas de Prova de Vida e Funcionário.  Disponibilização da funcionalidade de Ajuste de Limite no Visão 360.  Habilitação da rota de Propensão de Ofertas para o client_id da aplicação.  Correção dos direcionamentos configurados no AKAMAI, garantindo a comunicação adequada entre os serviços e o Visão 360.",
+        "repositorios": [
+            "ceat-visao-360-bff",
+            "ceat-atendimento-cartoes-bff",
+            "ceat-gerenciamento-cartao-front",
+            "pben-prova-vida-api"
+        ],
+        "plano_rollback": [
+            "Variável de ambiente não necessita rollback",
+            "voltar versao anterior 1.1.0.7",
+            "Retornar para versão anterior",
+            "Retornar para a versão anterior do akamai",
+            "voltar versao anterior 1.0.0.4",
+            "Retirar a associação do client_id adicionadado"
+        ],
+        "riscos_identificados": "High"
+    },
+    {
+        "gmud_id": "CHN-11937",
+        "titulo": "Omnichannel - Visão 360 - Correções de implantação",
+        "dt_criacao": "2026-06-11 03:37:43 PM",
+        "janela_execucao": {
+            "inicio": "2026-06-25 05:30:00 PM",
+            "fim": "2026-06-26 08:00:00 PM"
+        },
+        "status": "Executada Com Sucesso",
+        "tipo_mudanca": "Normal",
+        "sistemas_afetados": [
+            "ceat-validacao-facial-front",
+            "ceat-conta-corrente-360-bff",
+            "gefa-negociacao-api",
+            "gefa-consulta-fatura-api"
+        ],
+        "descricao": "Resumo da GMUD (Correção)     Esta GMUD tem como finalidade corrigir e estabilizar a entrega inicial do BmgUni, plataforma omnichannel do Bmg, assegurando o funcionamento adequado das funcionalidades já implantadas na fase inicial. A correção atua sobre a camada de atendimento unificado, garantindo maior confiabilidade na consolidação das informações do cliente e na integração entre os sistemas envolvidos.  A mudança contempla ajustes na tela de cockpit de atendimento, bem como nas integrações com os módulos de Cartões, Raio X (visão 360º), Cadastro (Cadu) e Novo Consig, assegurando consistência dos dados e melhoria na experiência operacional dos analistas.  Como resultado, espera-se maior estabilidade da solução, redução de inconsistências e reforço na proposta de centralização do atendimento em uma única plataforma. O impacto é controlado, restrito às áreas internas, sem alteração na experiência do cliente final, contribuindo para a continuidade da estratégia de modernização e evolução omnichannel do Bmg.",
+        "alteracoes_tecnicas": "Resumo da GMUD (Correção)     Esta GMUD tem como finalidade corrigir e estabilizar a entrega inicial do BmgUni, plataforma omnichannel do Bmg, assegurando o funcionamento adequado das funcionalidades já implantadas na fase inicial. A correção atua sobre a camada de atendimento unificado, garantindo maior confiabilidade na consolidação das informações do cliente e na integração entre os sistemas envolvidos.  A mudança contempla ajustes na tela de cockpit de atendimento, bem como nas integrações com os módulos de Cartões, Raio X (visão 360º), Cadastro (Cadu) e Novo Consig, assegurando consistência dos dados e melhoria na experiência operacional dos analistas.  Como resultado, espera-se maior estabilidade da solução, redução de inconsistências e reforço na proposta de centralização do atendimento em uma única plataforma. O impacto é controlado, restrito às áreas internas, sem alteração na experiência do cliente final, contribuindo para a continuidade da estratégia de modernização e evolução omnichannel do Bmg.",
+        "repositorios": [
+            "ceat-validacao-facial-front",
+            "ceat-conta-corrente-360-bff",
+            "gefa-negociacao-api",
+            "gefa-consulta-fatura-api"
+        ],
+        "plano_rollback": [],
+        "riscos_identificados": "Low"
+    },
+    {
+        "gmud_id": "CHN-12211",
+        "titulo": "[Novo Consig] Mensagens ofertas indisponíveis",
+        "dt_criacao": "2026-06-23 09:09:03 AM",
+        "janela_execucao": {
+            "inicio": "2026-06-25 06:00:00 PM",
+            "fim": "2026-06-26 06:00:00 AM"
+        },
+        "status": "Executada Com Sucesso",
+        "tipo_mudanca": "Pré-aprovada",
+        "sistemas_afetados": [
+            "bmg.consig.mais.back",
+            "bmg.consig.mais.front",
+            "geld-gestao-leads-mfe-front"
+        ],
+        "descricao": "Sistema:  Novo Consig Frontend / Backend  Responsável: Daniel Machado, Vinicius Sorrosal, Olivia Thomazini  Time: Squad Jornada Vendas CNC  Objetivo: Mensagens ofertas indisponíveis  Jira: https://bancobmg.atlassian.net/browse/SJCH-2216 / https://bancobmg.atlassian.net/browse/SJCH-2270  ARB: Não há  Alteração no Legado: Não  QA: Cicera Adejane  Testes realizados: Sim  Link Xray: Anexados  Impactos previstos: Exibição clara dos motivos de não ofertas de produtos - bmg.consig.mais.front - bmg.consig.mais.back - geld-gestao-leads-mfe-front",
+        "alteracoes_tecnicas": "Sistema:  Novo Consig Frontend / Backend  Responsável: Daniel Machado, Vinicius Sorrosal, Olivia Thomazini  Time: Squad Jornada Vendas CNC  Objetivo: Mensagens ofertas indisponíveis  Jira: https://bancobmg.atlassian.net/browse/SJCH-2216 / https://bancobmg.atlassian.net/browse/SJCH-2270  ARB: Não há  Alteração no Legado: Não  QA: Cicera Adejane  Testes realizados: Sim  Link Xray: Anexados  Impactos previstos: Exibição clara dos motivos de não ofertas de produtos - bmg.consig.mais.front - bmg.consig.mais.back - geld-gestao-leads-mfe-front",
+        "repositorios": [
+            "bmg.consig.mais.back",
+            "bmg.consig.mais.front",
+            "geld-gestao-leads-mfe-front"
+        ],
+        "plano_rollback": [
+            "inf rollback 1.0.0.5"
+        ],
+        "riscos_identificados": "Low"
+    },
+    {
+        "gmud_id": "CHN-12230",
+        "titulo": "[Novo Consig] Ativar feature toggles de Fingerprint e Token OTP exceto incluídos na lista de exceção",
+        "dt_criacao": "2026-06-23 03:56:11 PM",
+        "janela_execucao": {
+            "inicio": "2026-06-25 06:45:00 PM",
+            "fim": "2026-06-25 11:45:00 PM"
+        },
+        "status": "Executada Com Sucesso",
+        "tipo_mudanca": "Pré-aprovada",
+        "sistemas_afetados": [
+            "acas-autenticacao-parceiros-api"
+        ],
+        "descricao": "Objetivo: Ativar feature toggles de Fingerprint e Token OTP exceto incluídos na lista de exceção. Para tal, mandar PR para CNFG de Produção e rodar Deploy no ACAS-autenticacao-parceiros-api para constar valores  Responsáveis: Lucas Maues  Motivo: Necessidade de Negócio @ PM Carlos Eurico carlos.reis@bancobmg.com.br  Serviços Afetados:   - ACAS-autenticacao-parceiros-api  - CNFG-config-server-prd  Plano de Rollback: Remover features toggles.  Cards Jira:  - https://bancobmg.atlassian.net/browse/SPLAT-3343  Link PRs: ANEXO CARDS.  Evidências Testes X-Ray: ANEXO.",
+        "alteracoes_tecnicas": "Objetivo: Ativar feature toggles de Fingerprint e Token OTP exceto incluídos na lista de exceção. Para tal, mandar PR para CNFG de Produção e rodar Deploy no ACAS-autenticacao-parceiros-api para constar valores  Responsáveis: Lucas Maues  Motivo: Necessidade de Negócio @ PM Carlos Eurico carlos.reis@bancobmg.com.br  Serviços Afetados:   - ACAS-autenticacao-parceiros-api  - CNFG-config-server-prd  Plano de Rollback: Remover features toggles.  Cards Jira:  - https://bancobmg.atlassian.net/browse/SPLAT-3343  Link PRs: ANEXO CARDS.  Evidências Testes X-Ray: ANEXO.",
+        "repositorios": [
+            "acas-autenticacao-parceiros-api"
+        ],
+        "plano_rollback": [
+            "Remover",
+            "inf rollback 1.0.3.0"
+        ],
+        "riscos_identificados": "Low"
+    },
+    {
+        "gmud_id": "CHN-12240",
+        "titulo": "Simulação de Renegociação no BMG UNI",
+        "dt_criacao": "2026-06-24 10:05:26 AM",
+        "janela_execucao": {
+            "inicio": "2026-07-14 06:00:00 PM",
+            "fim": "2026-07-15 08:00:00 PM"
+        },
+        "status": "",
+        "tipo_mudanca": "Normal",
+        "sistemas_afetados": [
+            "gefa-negociacao-api",
+            "ipct-interface-cobranca-api",
+            "ipct-interface-faturas-api"
+        ],
+        "descricao": "?? Descrição    Possibilitar a funcionalidade de Simulação de Renegociação no BMG UNI, permitindo que atendentes dos canais autorizados consultem dados, informem percentual de desconto, executem simulações via API, gravem propostas e encaminhem para efetivação, respeitando alçadas de desconto por canal e registrando logs auditáveis.",
+        "alteracoes_tecnicas": "?? Descrição    Possibilitar a funcionalidade de Simulação de Renegociação no BMG UNI, permitindo que atendentes dos canais autorizados consultem dados, informem percentual de desconto, executem simulações via API, gravem propostas e encaminhem para efetivação, respeitando alçadas de desconto por canal e registrando logs auditáveis.",
+        "repositorios": [
+            "gefa-negociacao-api",
+            "ipct-interface-cobranca-api",
+            "ipct-interface-faturas-api"
+        ],
+        "plano_rollback": [
+            "Voltar versão anterior 1.0.0.0",
+            "Variável de ambiente não necessita rollback.",
+            "Voltar versão anterior 1.0.0.2",
+            "Primeira publicação, nao necessita rollback"
+        ],
+        "riscos_identificados": "Low"
+    },
+    {
+        "gmud_id": "CHN-12255",
+        "titulo": "CMSS-3827 Correções de lançamento contábil no comissionamento",
+        "dt_criacao": "2026-06-24 03:23:18 PM",
+        "janela_execucao": {
+            "inicio": "2026-06-25 02:00:00 PM",
+            "fim": "2026-06-25 11:00:00 PM"
+        },
+        "status": "Executada Com Sucesso",
+        "tipo_mudanca": "Pré-aprovada",
+        "sistemas_afetados": [
+            "BG17038",
+            "cmss-processa-remuneracao-consumer",
+            "cmss-processa-lancamento-consumer"
+        ],
+        "descricao": "CMSS-3827:  Ajustes de Lógica Contábil e Consolidação de Relatório Mensal        Divergências relevantes no evento 6 entre bases    Aparição de bônus como evento 22    Ajustar a lógica contábil garantindo uso correto dos eventos 22, 23 e 6  Refinar queries separando parcela zero e parcelas > 0  Consolidar relatório mensal com comparativo entre contabilização esperada vs realizada     Aplicações  cmss-processa-remuneracao-consumer versao 1.0.36.0 cmss-processa-lancamento-consumer versão 1.0.37.0",
+        "alteracoes_tecnicas": "CMSS-3827:  Ajustes de Lógica Contábil e Consolidação de Relatório Mensal        Divergências relevantes no evento 6 entre bases    Aparição de bônus como evento 22    Ajustar a lógica contábil garantindo uso correto dos eventos 22, 23 e 6  Refinar queries separando parcela zero e parcelas > 0  Consolidar relatório mensal com comparativo entre contabilização esperada vs realizada     Aplicações  cmss-processa-remuneracao-consumer versao 1.0.36.0 cmss-processa-lancamento-consumer versão 1.0.37.0",
+        "repositorios": [
+            "BG17038",
+            "cmss-processa-remuneracao-consumer",
+            "cmss-processa-lancamento-consumer"
+        ],
+        "plano_rollback": [],
+        "riscos_identificados": "Low"
+    },
+    {
+        "gmud_id": "CHN-12286",
+        "titulo": "Privado com Garantia",
+        "dt_criacao": "2026-06-25 02:06:04 PM",
+        "janela_execucao": {
+            "inicio": "2026-06-25 06:00:00 PM",
+            "fim": "2026-06-26 02:00:00 AM"
+        },
+        "status": "Executada Com Sucesso",
+        "tipo_mudanca": "Pré-aprovada",
+        "sistemas_afetados": [
+            "prd-cgp001-consig-imediata-new",
+            "prd-cgp001-uranet-imediata-new",
+            "cgp021-cgp021_proposta_api"
+        ],
+        "descricao": "Implementação da opção do privado com garantias",
+        "alteracoes_tecnicas": "Implementação da opção do privado com garantias",
+        "repositorios": [
+            "prd-cgp001-consig-imediata-new",
+            "prd-cgp001-uranet-imediata-new",
+            "cgp021-cgp021_proposta_api"
+        ],
+        "plano_rollback": [
+            "V_19_75_00",
+            "4.45.0.0"
+        ],
+        "riscos_identificados": "Low"
+    },
+    {
+        "gmud_id": "CHN-12310",
+        "titulo": "[Novo Emprestimo] Alerta de anuência",
+        "dt_criacao": "2026-06-25 07:09:13 PM",
+        "janela_execucao": {
+            "inicio": "2026-06-25 07:30:00 PM",
+            "fim": "2026-06-26 11:45:00 PM"
+        },
+        "status": "Executada Com Sucesso",
+        "tipo_mudanca": "Pré-aprovada",
+        "sistemas_afetados": [
+            "prne-consulta-proposta"
+        ],
+        "descricao": "Boa tarde!     Sistema: [prne-consulta-proposta]  Responsável: [ Gabriel dos Santos Souza/Deivdson Oliveira/Cleiton Souza ]  Time: Novo Emprestimo  Resumo: Alerta de anuência não está sendo exibido no grid do acompanhamento     Trata-se de adequações para inclusão do alerta no fluxo de anuência INSS.     PR: Pull request 130208: release 1.20.1.4 - Repos  ARB: [N/A]  Alteração no Legado: Não  Rollback: [ Retornar a versão anterior ]  QA: Maibe Souza",
+        "alteracoes_tecnicas": "Boa tarde!     Sistema: [prne-consulta-proposta]  Responsável: [ Gabriel dos Santos Souza/Deivdson Oliveira/Cleiton Souza ]  Time: Novo Emprestimo  Resumo: Alerta de anuência não está sendo exibido no grid do acompanhamento     Trata-se de adequações para inclusão do alerta no fluxo de anuência INSS.     PR: Pull request 130208: release 1.20.1.4 - Repos  ARB: [N/A]  Alteração no Legado: Não  Rollback: [ Retornar a versão anterior ]  QA: Maibe Souza",
+        "repositorios": [
+            "prne-consulta-proposta"
+        ],
+        "plano_rollback": [
+            "inf rollback"
+        ],
+        "riscos_identificados": "Low"
+    },
+    {
+        "gmud_id": "CHN-12361",
+        "titulo": "BCP006.CadastroDeLoja CNPJ Alfanúmerico",
+        "dt_criacao": "2026-06-28 11:04:30 AM",
+        "janela_execucao": {
+            "inicio": "2026-06-28 09:00:00 AM",
+            "fim": "2026-06-29 11:45:00 PM"
+        },
+        "status": "Executada Com Sucesso",
+        "tipo_mudanca": "Pré-aprovada",
+        "sistemas_afetados": [
+            "prd - bcp006 - cadastro de lojas - api - normal",
+            "prd - bcp049 - cadastro de lojas - core",
+            "bcp006-bcp006.cadastrodeloja.api",
+            "bcp049-bmg.cadastrodelojas.core",
+            "bcp036-bcp036.cadastrodeloja.webservice"
+        ],
+        "descricao": "Descrição                CMSS-1337 - REGULATÓRIO - Ajustar aplicações para receber CNPJ Alfanumérico     APLICAÇÕES  1)Time de Infra WINDOWS    Descompactar Anexos e copiar sobrepondo os arquivos do zip.     2)Time Operação para atualizar os servidores  Time Operação - Paulo Cesar Frozza  LD_CLUS01  SWAP2386  SWAP1015  SWAP2258  SWAP2259  SWAP4860      APLICAÇÃO  RELEASE  PIPELINE  BCP006.CadastroDeLoja.API  13.05.2026.1  https://dev.azure.com/banco-bmg-corp/BMG.Comissionamento/_build?definitionId=270  BCP006.CadastroDeLoja.VB6  3.0.462  \\\\bmg05-NAS\\mcbank\\nfsprod\\infra\\bc\\BCP006  BCP036.CadastroDeLoja.WebService  1.0.0.1  \\\\bmg05-NAS\\mcbank\\nfsprod\\infra\\bc\\BCP036   BCP049-BMG.CadastroDeLojas.Core  03.06.2026.15  https://dev.azure.com/banco-bmg-corp/BMG.Comissionamento/_build/results?buildId=23207&view=results",
+        "alteracoes_tecnicas": "Descrição                CMSS-1337 - REGULATÓRIO - Ajustar aplicações para receber CNPJ Alfanumérico     APLICAÇÕES  1)Time de Infra WINDOWS    Descompactar Anexos e copiar sobrepondo os arquivos do zip.     2)Time Operação para atualizar os servidores  Time Operação - Paulo Cesar Frozza  LD_CLUS01  SWAP2386  SWAP1015  SWAP2258  SWAP2259  SWAP4860      APLICAÇÃO  RELEASE  PIPELINE  BCP006.CadastroDeLoja.API  13.05.2026.1  https://dev.azure.com/banco-bmg-corp/BMG.Comissionamento/_build?definitionId=270  BCP006.CadastroDeLoja.VB6  3.0.462  \\\\bmg05-NAS\\mcbank\\nfsprod\\infra\\bc\\BCP006  BCP036.CadastroDeLoja.WebService  1.0.0.1  \\\\bmg05-NAS\\mcbank\\nfsprod\\infra\\bc\\BCP036   BCP049-BMG.CadastroDeLojas.Core  03.06.2026.15  https://dev.azure.com/banco-bmg-corp/BMG.Comissionamento/_build/results?buildId=23207&view=results",
+        "repositorios": [
+            "prd - bcp006 - cadastro de lojas - api - normal",
+            "prd - bcp049 - cadastro de lojas - core",
+            "bcp006-bcp006.cadastrodeloja.api",
+            "bcp049-bmg.cadastrodelojas.core",
+            "bcp036-bcp036.cadastrodeloja.webservice"
+        ],
+        "plano_rollback": [
+            "Release 13.11.2025.1",
+            "Rollback feature/202606/bkp_master_antes_Cnpj_alfa",
+            "Roolback feature/202606/bkp_main_antes_cnpj_alfa",
+            "Rolback feature/202606/bkp_master_antes_cnpj_alfa"
+        ],
+        "riscos_identificados": "Low"
+    },
+    {
+        "gmud_id": "CHN-12362",
+        "titulo": "BCP006.CadastroDeLoja CNPJ Alfanúmerico",
+        "dt_criacao": "2026-06-28 12:07:30 PM",
+        "janela_execucao": {
+            "inicio": "2026-06-28 12:00:00 PM",
+            "fim": "2026-06-29 11:30:00 PM"
+        },
+        "status": "Executada Com Sucesso",
+        "tipo_mudanca": "Pré-aprovada",
+        "sistemas_afetados": [
+            "bcp006-bcp006.cadastrodeloja.api"
+        ],
+        "descricao": "Descrição                CMSS-1337 - REGULATÓRIO - Ajustar aplicações para receber CNPJ Alfanumérico     APLICAÇÕES  1)Time de Infra WINDOWS    Descompactar Anexos e copiar sobrepondo os arquivos do zip.     2)Time Operação para atualizar os servidores  Time Operação - Paulo Cesar Frozza  LD_CLUS01  SWAP2386  SWAP1015  SWAP2258  SWAP2259  SWAP4860      APLICAÇÃO  RELEASE  PIPELINE  BCP006.CadastroDeLoja.API  13.05.2026.1  https://dev.azure.com/banco-bmg-corp/BMG.Comissionamento/_build?definitionId=270",
+        "alteracoes_tecnicas": "Descrição                CMSS-1337 - REGULATÓRIO - Ajustar aplicações para receber CNPJ Alfanumérico     APLICAÇÕES  1)Time de Infra WINDOWS    Descompactar Anexos e copiar sobrepondo os arquivos do zip.     2)Time Operação para atualizar os servidores  Time Operação - Paulo Cesar Frozza  LD_CLUS01  SWAP2386  SWAP1015  SWAP2258  SWAP2259  SWAP4860      APLICAÇÃO  RELEASE  PIPELINE  BCP006.CadastroDeLoja.API  13.05.2026.1  https://dev.azure.com/banco-bmg-corp/BMG.Comissionamento/_build?definitionId=270",
+        "repositorios": [
+            "bcp006-bcp006.cadastrodeloja.api"
+        ],
+        "plano_rollback": [
+            "Release 13.11.2025.1"
+        ],
+        "riscos_identificados": "Low"
+    },
+    {
+        "gmud_id": "CHN-12389",
+        "titulo": "Adequação de Consulta benefício/margem",
+        "dt_criacao": "2026-06-30 10:49:45 AM",
+        "janela_execucao": {
+            "inicio": "2026-06-30 05:15:00 PM",
+            "fim": "2026-07-01 11:45:00 PM"
+        },
+        "status": "Executada Com Sucesso",
+        "tipo_mudanca": "Pré-aprovada",
+        "sistemas_afetados": [
+            "prne-modulo-calculo-consumer"
+        ],
+        "descricao": "Validação do novo campo ValorDisponivelAverbacaoEmprestimo no retorno da consulta de beneficio IN100",
+        "alteracoes_tecnicas": "Validação do novo campo ValorDisponivelAverbacaoEmprestimo no retorno da consulta de beneficio IN100",
+        "repositorios": [
+            "prne-modulo-calculo-consumer"
+        ],
+        "plano_rollback": [
+            "Voltar com a ultima versão estavel"
+        ],
+        "riscos_identificados": "Low"
+    },
+    {
+        "gmud_id": "CHN-12390",
+        "titulo": "[Consig] Atualização Certificado Web SSL *.bmgconsig.com.br (01/07/2026)",
+        "dt_criacao": "2026-06-30 11:08:04 AM",
+        "janela_execucao": {
+            "inicio": "2026-07-01 06:00:00 PM",
+            "fim": "2026-07-01 11:45:00 PM"
+        },
+        "status": "Executada Com Sucesso",
+        "tipo_mudanca": "Pré-aprovada",
+        "sistemas_afetados": [
+            "prd-cgp001-consig-imediata-new"
+        ],
+        "descricao": "Objetivo: Atualização Certificado Web SSL em *.bmgconsig.com.br  Responsáveis: Lucas Maues, Jefferson Molino, Rafael Camargo  Motivo: Necessidade de TI Infraestrutura de Redes  Serviços Afetados:  - CGP001  Plano de Rollback: Remover atualização de Certificado realizada.  Cards Jira: N/A.  Link PRs: N/A.  Evidências Testes: N/A. Obs.: Processo poderia ser automatizado (vide Cloudflare).",
+        "alteracoes_tecnicas": "Objetivo: Atualização Certificado Web SSL em *.bmgconsig.com.br  Responsáveis: Lucas Maues, Jefferson Molino, Rafael Camargo  Motivo: Necessidade de TI Infraestrutura de Redes  Serviços Afetados:  - CGP001  Plano de Rollback: Remover atualização de Certificado realizada.  Cards Jira: N/A.  Link PRs: N/A.  Evidências Testes: N/A. Obs.: Processo poderia ser automatizado (vide Cloudflare).",
+        "repositorios": [
+            "prd-cgp001-consig-imediata-new"
+        ],
+        "plano_rollback": [
+            "Remover",
+            "inf rollback V_19_76_00",
+            "Rempver"
+        ],
+        "riscos_identificados": "Low"
+    },
+    {
+        "gmud_id": "CHN-12393",
+        "titulo": "[CGP001] Termos CCB GEPR (Regulatório BC), Correção Refin e Ajuste Termo Portabilidade",
+        "dt_criacao": "2026-06-30 11:37:51 AM",
+        "janela_execucao": {
+            "inicio": "2026-06-30 06:45:00 PM",
+            "fim": "2026-06-30 11:45:00 PM"
+        },
+        "status": "Não Executada",
+        "tipo_mudanca": "Pré-aprovada",
+        "sistemas_afetados": [
+            "prd-cgp001-consig-imediata-new",
+            "prd-cgp001-uranet-imediata-new"
+        ],
+        "descricao": "Objetivo:  - [CGP001] Regulatório do Banco Central - Atualizar Termos CCB de Propostas nova esteira com dados do GEPR e Propostas antiga esteira com dados do Consig  -  [CGP001] Correção Refin  -  [CGP001] Ajuste no Termo de Portabilidade  Responsáveis: Lucas Maues, Jefferson Molino, Rafael Camargo, Carlos Eurico  Motivo: Necessidade de TI Infraestrutura de Redes  Serviços Afetados:   - CGP001  Plano de Rollback: Voltar para última versão estável.  Cards Jira: N/A.  Link PRs: ANEXO CARDS.  Evidências Testes: ANEXO.",
+        "alteracoes_tecnicas": "Objetivo:  - [CGP001] Regulatório do Banco Central - Atualizar Termos CCB de Propostas nova esteira com dados do GEPR e Propostas antiga esteira com dados do Consig  -  [CGP001] Correção Refin  -  [CGP001] Ajuste no Termo de Portabilidade  Responsáveis: Lucas Maues, Jefferson Molino, Rafael Camargo, Carlos Eurico  Motivo: Necessidade de TI Infraestrutura de Redes  Serviços Afetados:   - CGP001  Plano de Rollback: Voltar para última versão estável.  Cards Jira: N/A.  Link PRs: ANEXO CARDS.  Evidências Testes: ANEXO.",
+        "repositorios": [
+            "prd-cgp001-consig-imediata-new",
+            "prd-cgp001-uranet-imediata-new"
+        ],
+        "plano_rollback": [
+            "inf rollback V_19_76_00"
+        ],
+        "riscos_identificados": "Low"
+    },
+    {
+        "gmud_id": "CHN-12530",
+        "titulo": "Integração Marketing Cloud",
+        "dt_criacao": "2026-07-06 03:19:06 PM",
+        "janela_execucao": {
+            "inicio": "2026-07-14 06:00:00 PM",
+            "fim": "2026-07-15 08:00:00 PM"
+        },
+        "status": "Executada Com Sucesso",
+        "tipo_mudanca": "Normal",
+        "sistemas_afetados": [
+            "adcn-interface-notificacao"
+        ],
+        "descricao": "O objetivo desta mudança é realizar a integração com o provedor de notificações do Marketing Cloud, possibilitando o disparo de mensagens via SMS e WhatsApp.  A não implementação desta demanda poderá impactar o cronograma das entregas de MarTech previstas na iniciativa Omnichannel, comprometendo a evolução das funcionalidades planejadas e seus respectivos marcos de entrega.",
+        "alteracoes_tecnicas": "O objetivo desta mudança é realizar a integração com o provedor de notificações do Marketing Cloud, possibilitando o disparo de mensagens via SMS e WhatsApp.  A não implementação desta demanda poderá impactar o cronograma das entregas de MarTech previstas na iniciativa Omnichannel, comprometendo a evolução das funcionalidades planejadas e seus respectivos marcos de entrega.",
+        "repositorios": [
+            "adcn-interface-notificacao"
+        ],
+        "plano_rollback": [
+            "Voltar versão anterior 8.6.0.3",
+            "Variável de ambiente não necessita rollback",
+            "Variavel de ambiente não necessita rollback",
+            "Revogar as credencial nas rotas mapeadas"
+        ],
+        "riscos_identificados": "Low"
+    },
+    {
+        "gmud_id": "CHN-12570",
+        "titulo": "[CGP001, CGP021] CCB Formalização e Refin da Port - Ajustes campos",
+        "dt_criacao": "2026-07-08 10:48:43 AM",
+        "janela_execucao": {
+            "inicio": "2026-07-08 06:00:00 PM",
+            "fim": "2026-07-08 11:45:00 PM"
+        },
+        "status": "Executada Com Sucesso",
+        "tipo_mudanca": "Pré-aprovada",
+        "sistemas_afetados": [
+            "prd-cgp001-consig-imediata-new",
+            "prd-cgp001-uranet-imediata-new",
+            "cgp021-cgp021_proposta_api",
+            "prd - eks - cgp021 - proposta api"
+        ],
+        "descricao": "Objetivo:   SPLAT-3894 [CGP001, CGP021] CCB Formalização - Ajustes campo 'Outros' e 'Cobrança Consignável'  SPLAT-3910 [CGP001] CCB Refin da Port - Ajuste tipo de dado no campo 'contratoOrigem'  Responsáveis: Lucas Maues, Jefferson Molino, Rafael Camargo, Carlos Eurico  Motivo: Regulatório do Banco Central  Serviços Afetados:   - CGP001  - CGP021  Plano de Rollback: Voltar para última versão estável.  Link PRs: ANEXO CARDS.  Evidências Testes X-Ray: ANEXO.",
+        "alteracoes_tecnicas": "Objetivo:   SPLAT-3894 [CGP001, CGP021] CCB Formalização - Ajustes campo 'Outros' e 'Cobrança Consignável'  SPLAT-3910 [CGP001] CCB Refin da Port - Ajuste tipo de dado no campo 'contratoOrigem'  Responsáveis: Lucas Maues, Jefferson Molino, Rafael Camargo, Carlos Eurico  Motivo: Regulatório do Banco Central  Serviços Afetados:   - CGP001  - CGP021  Plano de Rollback: Voltar para última versão estável.  Link PRs: ANEXO CARDS.  Evidências Testes X-Ray: ANEXO.",
+        "repositorios": [
+            "prd-cgp001-consig-imediata-new",
+            "prd-cgp001-uranet-imediata-new",
+            "cgp021-cgp021_proposta_api",
+            "prd - eks - cgp021 - proposta api"
+        ],
+        "plano_rollback": [
+            "inf rollback 19.77.0.0",
+            "inf rollback 4.46.0.0"
+        ],
+        "riscos_identificados": "Low"
+    },
+    {
+        "gmud_id": "CHN-12572",
+        "titulo": "Deploy CMSS",
+        "dt_criacao": "2026-07-08 11:20:28 AM",
+        "janela_execucao": {
+            "inicio": "2026-07-08 02:00:00 PM",
+            "fim": "2026-07-08 11:45:00 PM"
+        },
+        "status": "Não Executada",
+        "tipo_mudanca": "Pré-aprovada",
+        "sistemas_afetados": [
+            "RARO-PE0F2MLD",
+            "cmss-processa-liquidacao-consumer",
+            "cmss-backoffice-remuneracao-front",
+            "cmss-exporta-dados-consumer"
+        ],
+        "descricao": "1 - Cadastrar a chave pública nos secrets do lifi     Aplicação: lifi-liquidacao-api Conta: aws-bmg-pagar-liquidar-prd Secret Manager: lifi-liquidacao-api-prd     Variaveis: Credentials:Apis:Security:PublicKeys:cmss-processa-liquidacao-consumer:{{CHAVE-PUBLICA}}        2 - Cadastrar a chave privada nos secrets do cmss Aplicação: cmss-processa-liquidacao-consumer Conta: bmg.apoio.operacoes Secret Manager: aws-bmg-apoio-operações-prd     Variaveis: Credentials:Apis:Security:PrivateKey:{{CHAVE-PRIVADA}}     Importante: Solicitar credenciais (chave pública / chave privada) via teams para Natan Amurim.     3 - Aprovação de subida da versão.  Aplicação: cmss-processa-liquidacao-consumer  Versão: 1.0.36.0",
+        "alteracoes_tecnicas": "1 - Cadastrar a chave pública nos secrets do lifi     Aplicação: lifi-liquidacao-api Conta: aws-bmg-pagar-liquidar-prd Secret Manager: lifi-liquidacao-api-prd     Variaveis: Credentials:Apis:Security:PublicKeys:cmss-processa-liquidacao-consumer:{{CHAVE-PUBLICA}}        2 - Cadastrar a chave privada nos secrets do cmss Aplicação: cmss-processa-liquidacao-consumer Conta: bmg.apoio.operacoes Secret Manager: aws-bmg-apoio-operações-prd     Variaveis: Credentials:Apis:Security:PrivateKey:{{CHAVE-PRIVADA}}     Importante: Solicitar credenciais (chave pública / chave privada) via teams para Natan Amurim.     3 - Aprovação de subida da versão.  Aplicação: cmss-processa-liquidacao-consumer  Versão: 1.0.36.0",
+        "repositorios": [
+            "RARO-PE0F2MLD",
+            "cmss-processa-liquidacao-consumer",
+            "cmss-backoffice-remuneracao-front",
+            "cmss-exporta-dados-consumer"
+        ],
+        "plano_rollback": [
+            "inf rollback"
+        ],
+        "riscos_identificados": "Low"
+    },
+    {
+        "gmud_id": "CHN-12583",
+        "titulo": "Tratamento de retorno de margem zero ou negativa nas propostas de Empréstimo Novo",
+        "dt_criacao": "2026-07-08 02:59:15 PM",
+        "janela_execucao": {
+            "inicio": "2026-07-08 05:30:00 PM",
+            "fim": "2026-07-10 11:45:00 PM"
+        },
+        "status": "",
+        "tipo_mudanca": "Pré-aprovada",
+        "sistemas_afetados": [
+            "prne-modulo-calculo-consumer"
+        ],
+        "descricao": "O Problema: Na etapa de consulta de dados de benefício da esteira Camunda, quando o serviço/produto é 1/empréstimo novo e o valor de margem retorna negativo ou zero, a proposta digitada tem seus dados de margem atualizados com valores negativos. Isso gera críticas de recálculo por inconsistência de valores, travando o fluxo da proposta.  O Valor: Ao ignorar a atualização de margem quando o valor retornado for negativo, a proposta seguirá normalmente na esteira, evitando travamentos desnecessários e reduzindo intervenções manuais.  Impacto: Redução de propostas travadas indevidamente, melhoria na eficiência operacional da esteira Camunda e maior fluidez no processamento de empréstimos novos.",
+        "alteracoes_tecnicas": "O Problema: Na etapa de consulta de dados de benefício da esteira Camunda, quando o serviço/produto é 1/empréstimo novo e o valor de margem retorna negativo ou zero, a proposta digitada tem seus dados de margem atualizados com valores negativos. Isso gera críticas de recálculo por inconsistência de valores, travando o fluxo da proposta.  O Valor: Ao ignorar a atualização de margem quando o valor retornado for negativo, a proposta seguirá normalmente na esteira, evitando travamentos desnecessários e reduzindo intervenções manuais.  Impacto: Redução de propostas travadas indevidamente, melhoria na eficiência operacional da esteira Camunda e maior fluidez no processamento de empréstimos novos.",
+        "repositorios": [
+            "prne-modulo-calculo-consumer"
+        ],
+        "plano_rollback": [
+            "inf rollback"
+        ],
+        "riscos_identificados": "Low"
+    },
+    {
+        "gmud_id": "CHN-12588",
+        "titulo": "Deploy ajuste Cadastro de Loja CNPJ Alfanumérico",
+        "dt_criacao": "2026-07-08 04:32:21 PM",
+        "janela_execucao": {
+            "inicio": "2026-07-08 05:00:00 PM",
+            "fim": "2026-07-10 11:45:00 PM"
+        },
+        "status": "Executada Com Sucesso",
+        "tipo_mudanca": "Pré-aprovada",
+        "sistemas_afetados": [
+            "BG15905",
+            "bcp049-bmg.cadastrodelojas.core"
+        ],
+        "descricao": "1) Deploy BCP049-BMG.CadastroDeLojas.Core Versão: 03.06.2026.16 Motivo: Correção de Versão Microsoft.Extensions  2) Deploy BCP006.CadastroDeLoja.VB6 Versão: 464 Motivo: Correção no Cadastro de Loja  3) Deploy BMG.Comissionamento.SAR.Oracle Versão 6.0.20 Motivo: Correção na busca de liquidações do dia anterior.",
+        "alteracoes_tecnicas": "1) Deploy BCP049-BMG.CadastroDeLojas.Core Versão: 03.06.2026.16 Motivo: Correção de Versão Microsoft.Extensions  2) Deploy BCP006.CadastroDeLoja.VB6 Versão: 464 Motivo: Correção no Cadastro de Loja  3) Deploy BMG.Comissionamento.SAR.Oracle Versão 6.0.20 Motivo: Correção na busca de liquidações do dia anterior.",
+        "repositorios": [
+            "BG15905",
+            "bcp049-bmg.cadastrodelojas.core"
+        ],
+        "plano_rollback": [
+            "Realizar backup do ultimo executavel",
+            "inf rollback",
+            "N/A",
+            "Realizar backup do ultimo executável",
+            "NA"
+        ],
+        "riscos_identificados": "Low"
+    },
+    {
+        "gmud_id": "CHN-12596",
+        "titulo": "[CGP001, CGP021] CCB Formalização e Refin da Port - Ajustes campos [Correção ativo cgp001]",
+        "dt_criacao": "2026-07-08 06:40:32 PM",
+        "janela_execucao": {
+            "inicio": "2026-07-08 06:00:00 PM",
+            "fim": "2026-07-08 11:45:00 PM"
+        },
+        "status": "Executada Com Sucesso",
+        "tipo_mudanca": "Pré-aprovada",
+        "sistemas_afetados": [
+            "cgp001_consig",
+            "cgp001_consig_uranet"
+        ],
+        "descricao": "Objetivo:   *Correção do ativo cgp001 que agora se chama cgp001_consig_uranet e cgp001_consig devido mudança de repositório Azure DevOps mesmo escopo da GMUD #CHN-12570    SPLAT-3894 [CGP001, CGP021] CCB Formalização - Ajustes campo 'Outros' e 'Cobrança Consignável'  SPLAT-3910 [CGP001] CCB Refin da Port - Ajuste tipo de dado no campo 'contratoOrigem'    Responsáveis: Lucas Maues, Jefferson Molino, Rafael Camargo, Carlos Eurico  Motivo: Regulatório do Banco Central  Serviços Afetados:   - CGP001  - CGP021  Plano de Rollback: Voltar para última versão estável.  Link PRs: ANEXO CARDS.  Evidências Testes X-Ray: ANEXO.",
+        "alteracoes_tecnicas": "Objetivo:   *Correção do ativo cgp001 que agora se chama cgp001_consig_uranet e cgp001_consig devido mudança de repositório Azure DevOps mesmo escopo da GMUD #CHN-12570    SPLAT-3894 [CGP001, CGP021] CCB Formalização - Ajustes campo 'Outros' e 'Cobrança Consignável'  SPLAT-3910 [CGP001] CCB Refin da Port - Ajuste tipo de dado no campo 'contratoOrigem'    Responsáveis: Lucas Maues, Jefferson Molino, Rafael Camargo, Carlos Eurico  Motivo: Regulatório do Banco Central  Serviços Afetados:   - CGP001  - CGP021  Plano de Rollback: Voltar para última versão estável.  Link PRs: ANEXO CARDS.  Evidências Testes X-Ray: ANEXO.",
+        "repositorios": [
+            "cgp001_consig",
+            "cgp001_consig_uranet"
+        ],
+        "plano_rollback": [
+            "Apoio na migração repo",
+            "inf rollback 19.77.0.0"
+        ],
+        "riscos_identificados": "Low"
+    },
+    {
+        "gmud_id": "CHN-12615",
+        "titulo": "OPEN API E SPAR - AJUSTES DE USUARIO E PRIVADO",
+        "dt_criacao": "2026-07-10 10:58:45 AM",
+        "janela_execucao": {
+            "inicio": "2026-07-15 06:00:00 PM",
+            "fim": "2026-07-16 02:00:00 AM"
+        },
+        "status": "Executada Com Sucesso",
+        "tipo_mudanca": "Pré-aprovada",
+        "sistemas_afetados": [
+            "cgp022_autenticacao_api"
+        ],
+        "descricao": "Renovar expiração de senha do parceiro a cada acesso ao sistema     Implementar ajuste na aplicação CGP022 para permitir a gravação de propostas mesmo quando a senha do parceiro estiver vencida, evitando bloqueios no processo de venda. A necessidade da mudança surgiu após a identificação de um caso em que um parceiro não conseguiu concluir uma venda devido à expiração da senha. O impacto esperado é a continuidade da operação comercial, reduzindo interrupções no fluxo de vendas e melhorando a experiência dos parceiros.",
+        "alteracoes_tecnicas": "Renovar expiração de senha do parceiro a cada acesso ao sistema     Implementar ajuste na aplicação CGP022 para permitir a gravação de propostas mesmo quando a senha do parceiro estiver vencida, evitando bloqueios no processo de venda. A necessidade da mudança surgiu após a identificação de um caso em que um parceiro não conseguiu concluir uma venda devido à expiração da senha. O impacto esperado é a continuidade da operação comercial, reduzindo interrupções no fluxo de vendas e melhorando a experiência dos parceiros.",
+        "repositorios": [
+            "cgp022_autenticacao_api"
+        ],
+        "plano_rollback": [
+            "Apagar credencial",
+            "voltar para a versão rollback: 2.44.0.0"
+        ],
+        "riscos_identificados": "Low"
+    },
+    {
+        "gmud_id": "CHN-12616",
+        "titulo": "Deploy CMSS",
+        "dt_criacao": "2026-07-10 02:04:22 PM",
+        "janela_execucao": {
+            "inicio": "2026-07-10 02:00:00 PM",
+            "fim": "2026-07-10 11:45:00 PM"
+        },
+        "status": "Executada Com Sucesso",
+        "tipo_mudanca": "Pré-aprovada",
+        "sistemas_afetados": [
+            "BG15905",
+            "cmss-wrapper-alfandega-cartao-service"
+        ],
+        "descricao": "Aplicação: cmss-wrapper-alfandega-cartao-service Versão: 1.0.47.0 Motivo: Desligando na alfandega a buscar por contratos de rotativos.",
+        "alteracoes_tecnicas": "Aplicação: cmss-wrapper-alfandega-cartao-service Versão: 1.0.47.0 Motivo: Desligando na alfandega a buscar por contratos de rotativos.",
+        "repositorios": [
+            "BG15905",
+            "cmss-wrapper-alfandega-cartao-service"
+        ],
+        "plano_rollback": [
+            "inf rollback"
+        ],
+        "riscos_identificados": "Low"
+    },
+    {
+        "gmud_id": "CHN-12654",
+        "titulo": "Funcionalidade - Prova de Vida - V360",
+        "dt_criacao": "2026-07-13 04:09:25 PM",
+        "janela_execucao": {
+            "inicio": "2026-07-16 06:00:00 PM",
+            "fim": "2026-07-16 08:00:00 PM"
+        },
+        "status": "Executada Com Sucesso",
+        "tipo_mudanca": "Normal",
+        "sistemas_afetados": [
+            "ceat-conta-corrente-360-front"
+        ],
+        "descricao": "?? Descrição   Possibilitar a funcionalidade de prova de vida dentro de conta corrente para que seja viável realizar a função durante o uso do sistema Visão 360.     Impacto:  ceat-conta-corrente-360-front",
+        "alteracoes_tecnicas": "?? Descrição   Possibilitar a funcionalidade de prova de vida dentro de conta corrente para que seja viável realizar a função durante o uso do sistema Visão 360.     Impacto:  ceat-conta-corrente-360-front",
+        "repositorios": [
+            "ceat-conta-corrente-360-front"
+        ],
+        "plano_rollback": [
+            "Retornar para versão anterior"
+        ],
+        "riscos_identificados": "Low"
+    },
+    {
+        "gmud_id": "CHN-12672",
+        "titulo": "CMSS-3561 Implementação autenticação robusta CMSS - Lifi",
+        "dt_criacao": "2026-07-14 11:19:56 AM",
+        "janela_execucao": {
+            "inicio": "2026-07-14 11:30:00 AM",
+            "fim": "2026-07-14 11:30:00 PM"
+        },
+        "status": "Não Executada",
+        "tipo_mudanca": "Pré-aprovada",
+        "sistemas_afetados": [
+            "cmss-processa-liquidacao-consumer"
+        ],
+        "descricao": "Implementação da autenticação robusta do cmss com api lifi.   Atividades  1)Cadastrar a chave pública nos secrets do lifi  Aplicação: lifi-liquidacao-api Conta: aws-bmg-pagar-liquidar-prd Secret Manager: lifi-liquidacao-api-prd     Variaveis: Credentials:Apis:Security:PublicKeys:cmss-processa-liquidacao-consumer:{{CHAVE-PUBLICA}}        2)Cadastrar a chave privada nos secrets do cmss Aplicação: cmss-processa-liquidacao-consumer Conta: bmg.apoio.operacoes Secret Manager: aws-bmg-apoio-operações-prd     Variaveis: Credentials:Apis:Security:PrivateKey:{{CHAVE-PRIVADA}}     Importante: Solicitar credenciais (chave pública / chave privada) via teams para Natan Amurim.     3)Aprovação de subida da versão.  Aplicação: cmss-processa-liquidacao-consumer  Versão: 1.0.36.0  PR: Pipelines - Run 20260708.4",
+        "alteracoes_tecnicas": "Implementação da autenticação robusta do cmss com api lifi.   Atividades  1)Cadastrar a chave pública nos secrets do lifi  Aplicação: lifi-liquidacao-api Conta: aws-bmg-pagar-liquidar-prd Secret Manager: lifi-liquidacao-api-prd     Variaveis: Credentials:Apis:Security:PublicKeys:cmss-processa-liquidacao-consumer:{{CHAVE-PUBLICA}}        2)Cadastrar a chave privada nos secrets do cmss Aplicação: cmss-processa-liquidacao-consumer Conta: bmg.apoio.operacoes Secret Manager: aws-bmg-apoio-operações-prd     Variaveis: Credentials:Apis:Security:PrivateKey:{{CHAVE-PRIVADA}}     Importante: Solicitar credenciais (chave pública / chave privada) via teams para Natan Amurim.     3)Aprovação de subida da versão.  Aplicação: cmss-processa-liquidacao-consumer  Versão: 1.0.36.0  PR: Pipelines - Run 20260708.4",
+        "repositorios": [
+            "cmss-processa-liquidacao-consumer"
+        ],
+        "plano_rollback": [
+            "não se aplica rollback.",
+            "cmss-processa-liquidacao-consumer\r\nVersão: 1.0.34.1",
+            "Não se aplica rollback"
+        ],
+        "riscos_identificados": "Low"
+    },
+    {
+        "gmud_id": "CHN-12693",
+        "titulo": "[BMG.Consig.Mais.Front] Embeds, Acompanhamento Filtros, Melhorias Dev e Motivos Pendencia Cartão",
+        "dt_criacao": "2026-07-15 12:28:46 AM",
+        "janela_execucao": {
+            "inicio": "2026-07-16 06:00:00 PM",
+            "fim": "2026-07-17 03:30:00 AM"
+        },
+        "status": "Executada Com Sucesso",
+        "tipo_mudanca": "Pré-aprovada",
+        "sistemas_afetados": [
+            "bmg.consig.mais.front"
+        ],
+        "descricao": "Objetivo:    Tickets Jira na Versão  https://bancobmg.atlassian.net/projects/SPLAT/versions/17810/tab/release-report-all-issues  - Embeds do Consig no MULT - Tela Acompanhamento > Layout, Estados e Filtros avançados corrigidos - Melhorias internas no projeto para Devs - SMDE-2717 - FRONT - CARTAO - O motivo da pendencia não está mais sendo apresentado    Responsáveis: Lucas Maues, Keisuke Ihara, Rafael Camargo, Carlos Eurico  Motivo: Implantar em Produção demandas históricas do Time SPLAT de Front. Subir demanda do Time SMDE de Cartões anexada no pacote.  Serviços Afetados:   - BMG.Consig.Mais.Front  Plano de Rollback: Voltar para última versão estável.  Link PRs: ANEXO CARDS.  Evidências Testes X-Ray e Quality Gate: ANEXO CARDS.",
+        "alteracoes_tecnicas": "Objetivo:    Tickets Jira na Versão  https://bancobmg.atlassian.net/projects/SPLAT/versions/17810/tab/release-report-all-issues  - Embeds do Consig no MULT - Tela Acompanhamento > Layout, Estados e Filtros avançados corrigidos - Melhorias internas no projeto para Devs - SMDE-2717 - FRONT - CARTAO - O motivo da pendencia não está mais sendo apresentado    Responsáveis: Lucas Maues, Keisuke Ihara, Rafael Camargo, Carlos Eurico  Motivo: Implantar em Produção demandas históricas do Time SPLAT de Front. Subir demanda do Time SMDE de Cartões anexada no pacote.  Serviços Afetados:   - BMG.Consig.Mais.Front  Plano de Rollback: Voltar para última versão estável.  Link PRs: ANEXO CARDS.  Evidências Testes X-Ray e Quality Gate: ANEXO CARDS.",
+        "repositorios": [
+            "bmg.consig.mais.front"
+        ],
+        "plano_rollback": [
+            "inf rollback 1.66.0.0"
+        ],
+        "riscos_identificados": "Low"
+    },
+    {
+        "gmud_id": "CHN-12696",
+        "titulo": "CMSS-3561 Implementação autenticação robusta CMSS - Lifi",
+        "dt_criacao": "2026-07-15 10:52:39 AM",
+        "janela_execucao": {
+            "inicio": "2026-07-15 10:30:00 AM",
+            "fim": "2026-07-16 11:00:00 PM"
+        },
+        "status": "Executada Com Sucesso",
+        "tipo_mudanca": "Pré-aprovada",
+        "sistemas_afetados": [
+            "cmss-processa-liquidacao-consumer"
+        ],
+        "descricao": "CMSS-3561 Implementação autenticação robusta CMSS - Lifi  1)Reset de senha com time do GIA.  Link: https://bancobmg.freshservice.com/support/tickets/367714  Esta senha é necessária para cadastro na próximo tarefa da GMUD.     2)Cadastrar credenciais no secret manager do cmss  Aplicação: cmss-processa-liquidacao-consumer  Conta: aws-bmg-apoio-operacoes-prd  Secret Manager: cmss-processa-liquidacao-consumer-prd     Variaveis:  Credentials:Apis:Security:Username:svc-cmss-prolico-prd  Credentials:Apis:Security:Password:(Falar com time do GIA)  Credentials:Apis:Security:PrivateKey:(chave já cadastrada no secret manager em 14/07/26)     Chamado aberto para cadastro de credencias na fila de DevOps: https://bancobmg.freshservice.com/support/tickets/368141     3) Cadastrar de credenciais nos secrets do lifi-liquidacao-api   Aplicação: lifi-liquidacao-api  Conta: aws-bmg-pagar-liquidar-prd  Secret Manager: lifi-liquidacao-api-hml  Variaveis:  Credentials:Apis:Security:PublicKeys:cmss-processa-liquidacao-consumer:(chave já cadastrada no secret manager em 14/07/26)        Importante: Solicitar/Confirmar credenciais (chave pública / chave privada) via teams com Natan Amurim.        4) Pipeline cmss-processa-liquidacao-consumer   Aplicação: cmss-processa-liquidacao-consumer  Versão: 1.0.36.0  Rollback (versão): 1.0.34.1     https://dev.azure.com/banco-bmg/cmss/_build/results?buildId=319914&view=results",
+        "alteracoes_tecnicas": "CMSS-3561 Implementação autenticação robusta CMSS - Lifi  1)Reset de senha com time do GIA.  Link: https://bancobmg.freshservice.com/support/tickets/367714  Esta senha é necessária para cadastro na próximo tarefa da GMUD.     2)Cadastrar credenciais no secret manager do cmss  Aplicação: cmss-processa-liquidacao-consumer  Conta: aws-bmg-apoio-operacoes-prd  Secret Manager: cmss-processa-liquidacao-consumer-prd     Variaveis:  Credentials:Apis:Security:Username:svc-cmss-prolico-prd  Credentials:Apis:Security:Password:(Falar com time do GIA)  Credentials:Apis:Security:PrivateKey:(chave já cadastrada no secret manager em 14/07/26)     Chamado aberto para cadastro de credencias na fila de DevOps: https://bancobmg.freshservice.com/support/tickets/368141     3) Cadastrar de credenciais nos secrets do lifi-liquidacao-api   Aplicação: lifi-liquidacao-api  Conta: aws-bmg-pagar-liquidar-prd  Secret Manager: lifi-liquidacao-api-hml  Variaveis:  Credentials:Apis:Security:PublicKeys:cmss-processa-liquidacao-consumer:(chave já cadastrada no secret manager em 14/07/26)        Importante: Solicitar/Confirmar credenciais (chave pública / chave privada) via teams com Natan Amurim.        4) Pipeline cmss-processa-liquidacao-consumer   Aplicação: cmss-processa-liquidacao-consumer  Versão: 1.0.36.0  Rollback (versão): 1.0.34.1     https://dev.azure.com/banco-bmg/cmss/_build/results?buildId=319914&view=results",
+        "repositorios": [
+            "cmss-processa-liquidacao-consumer"
+        ],
+        "plano_rollback": [
+            "Rollback (versão): 1.0.34.1",
+            "NÃO SE APLICA ROLLBACK",
+            "NÃO SE APLICA"
+        ],
+        "riscos_identificados": "Low"
+    },
+    {
+        "gmud_id": "CHN-12708",
+        "titulo": "CMSS-3561 Implementação autenticação robusta CMSS - Lifi",
+        "dt_criacao": "2026-07-15 03:15:37 PM",
+        "janela_execucao": {
+            "inicio": "2026-07-15 04:00:00 PM",
+            "fim": "2026-07-17 11:00:00 PM"
+        },
+        "status": "Executada Com Sucesso",
+        "tipo_mudanca": "Pré-aprovada",
+        "sistemas_afetados": [
+            "cmss-wrapper-alfandega-cartao-service",
+            "cmss-processa-liquidacao-consumer",
+            "bcp049-bmg.cadastrodelojas.core"
+        ],
+        "descricao": "CMSS-3561 Implementação autenticação robusta CMSS - Lifi     1)Cadastrar credenciais no secret manager do cmss  Aplicação: cmss-processa-liquidacao-consumer  Conta: aws-bmg-apoio-operacoes-prd  Secret Manager: cmss-processa-liquidacao-consumer-prd     Variaveis:  Credentials:Apis:Security:Username:svc-cmss-prolico-prd  Credentials:Apis:Security:Password:(Falar com time do GIA)  Credentials:Apis:Security:PrivateKey:(chave já cadastrada no secret manager em 14/07/26)     Chamado aberto para cadastro de credencias na fila de DevOps: https://bancobmg.freshservice.com/support/tickets/368141     2) Cadastrar de credenciais nos secrets do lifi-liquidacao-api   Aplicação: lifi-liquidacao-api  Conta: aws-bmg-pagar-liquidar-prd  Secret Manager: lifi-liquidacao-api-hml  Variaveis:  Credentials:Apis:Security:PublicKeys:cmss-processa-liquidacao-consumer:(chave já cadastrada no secret manager em 14/07/26)        Importante: Solicitar/Confirmar credenciais (chave pública / chave privada) via teams com Natan Amurim.        3) Pipeline cmss-processa-liquidacao-consumer   Aplicação: cmss-processa-liquidacao-consumer  Versão: 1.0.36.0  Rollback (versão): 1.0.34.1     https://dev.azure.com/banco-bmg/cmss/_build/results?buildId=319914&view=results       4) Deploy bcp049-bmg.cadastrodelojas.core 03.06.2026.17  Pipelines - Run 20260715.3        5) cmss-wrapper-alfandega-cartao-service 1.0.48.0 Pipelines - Run 20260715.5",
+        "alteracoes_tecnicas": "CMSS-3561 Implementação autenticação robusta CMSS - Lifi     1)Cadastrar credenciais no secret manager do cmss  Aplicação: cmss-processa-liquidacao-consumer  Conta: aws-bmg-apoio-operacoes-prd  Secret Manager: cmss-processa-liquidacao-consumer-prd     Variaveis:  Credentials:Apis:Security:Username:svc-cmss-prolico-prd  Credentials:Apis:Security:Password:(Falar com time do GIA)  Credentials:Apis:Security:PrivateKey:(chave já cadastrada no secret manager em 14/07/26)     Chamado aberto para cadastro de credencias na fila de DevOps: https://bancobmg.freshservice.com/support/tickets/368141     2) Cadastrar de credenciais nos secrets do lifi-liquidacao-api   Aplicação: lifi-liquidacao-api  Conta: aws-bmg-pagar-liquidar-prd  Secret Manager: lifi-liquidacao-api-hml  Variaveis:  Credentials:Apis:Security:PublicKeys:cmss-processa-liquidacao-consumer:(chave já cadastrada no secret manager em 14/07/26)        Importante: Solicitar/Confirmar credenciais (chave pública / chave privada) via teams com Natan Amurim.        3) Pipeline cmss-processa-liquidacao-consumer   Aplicação: cmss-processa-liquidacao-consumer  Versão: 1.0.36.0  Rollback (versão): 1.0.34.1     https://dev.azure.com/banco-bmg/cmss/_build/results?buildId=319914&view=results       4) Deploy bcp049-bmg.cadastrodelojas.core 03.06.2026.17  Pipelines - Run 20260715.3        5) cmss-wrapper-alfandega-cartao-service 1.0.48.0 Pipelines - Run 20260715.5",
+        "repositorios": [
+            "cmss-wrapper-alfandega-cartao-service",
+            "cmss-processa-liquidacao-consumer",
+            "bcp049-bmg.cadastrodelojas.core"
+        ],
+        "plano_rollback": [
+            "não se aplica rollback",
+            "Rollback (versão):  1.0.47.0",
+            "Rollback (versão): 1.0.34.1",
+            "03.06.2026.16"
+        ],
+        "riscos_identificados": "Low"
+    },
+    {
+        "gmud_id": "CHN-12720",
+        "titulo": "[Novo Consig Multi] Leads Campanha e Cobrança por Loja",
+        "dt_criacao": "2026-07-15 06:04:08 PM",
+        "janela_execucao": {
+            "inicio": "2026-07-16 05:30:00 PM",
+            "fim": "2026-07-17 06:00:00 AM"
+        },
+        "status": "Executada Com Sucesso",
+        "tipo_mudanca": "Pré-aprovada",
+        "sistemas_afetados": [
+            "acps-multi-produto-leads-bff",
+            "sein-webhook-discador-api",
+            "prne-oferta-emprestimo-api"
+        ],
+        "descricao": "Sistema:  Novo Consig Multi  Responsável: Daniel Machado, Vinicius Sorrosal, Juliana Andrade Souza  Time: Squad Jornada Vendas CNC  Objetivo: Exibição de Leads Campanha e Cobrança por Loja no Multi / Evolução Novo Consig.  Jira: https://bancobmg.atlassian.net/browse/SJCH-2222 / https://bancobmg.atlassian.net/browse/SJCH-2281 / https://bancobmg.atlassian.net/browse/SJCH-2333  ARB: Não há  Alteração no Legado: Não  QA: Cicera Adejane  Testes realizados: Sim  Link Xray: Anexados  Impactos previstos: Leads Campanha e Cobrança por Loja  - prne-oferta-emprestimo-api  - acps-multi-produto-leads-bff - sein-webhook-discador-api",
+        "alteracoes_tecnicas": "Sistema:  Novo Consig Multi  Responsável: Daniel Machado, Vinicius Sorrosal, Juliana Andrade Souza  Time: Squad Jornada Vendas CNC  Objetivo: Exibição de Leads Campanha e Cobrança por Loja no Multi / Evolução Novo Consig.  Jira: https://bancobmg.atlassian.net/browse/SJCH-2222 / https://bancobmg.atlassian.net/browse/SJCH-2281 / https://bancobmg.atlassian.net/browse/SJCH-2333  ARB: Não há  Alteração no Legado: Não  QA: Cicera Adejane  Testes realizados: Sim  Link Xray: Anexados  Impactos previstos: Leads Campanha e Cobrança por Loja  - prne-oferta-emprestimo-api  - acps-multi-produto-leads-bff - sein-webhook-discador-api",
+        "repositorios": [
+            "acps-multi-produto-leads-bff",
+            "sein-webhook-discador-api",
+            "prne-oferta-emprestimo-api"
+        ],
+        "plano_rollback": [
+            "Remover valores",
+            "inf rollback 1.0.0.2",
+            "inf rollback 1.0.0.3",
+            "inf rollback 1.0.0.8"
+        ],
+        "riscos_identificados": "Low"
+    },
+    {
+        "gmud_id": "CHN-12745",
+        "titulo": "Entregas visão 360 sprint 20",
+        "dt_criacao": "2026-07-16 04:21:17 PM",
+        "janela_execucao": {
+            "inicio": "2026-07-21 05:30:00 PM",
+            "fim": "2026-07-22 08:00:00 PM"
+        },
+        "status": "Executada Com Sucesso",
+        "tipo_mudanca": "Normal",
+        "sistemas_afetados": [
+            "prcc-ddc-api",
+            "prcc-solicitacao-envio-ddc-consumer",
+            "fpva-fingerprint-api"
+        ],
+        "descricao": "O objetivo desta mudança é disponilizar a funcionalidade da solicitacao do DCC.  A não implementação desta demanda poderá impactar o cronograma das entregas do BMG Uni previstas na iniciativa Omnichannel, comprometendo a evolução das funcionalidades planejadas e seus respectivos marcos de entrega.",
+        "alteracoes_tecnicas": "O objetivo desta mudança é disponilizar a funcionalidade da solicitacao do DCC.  A não implementação desta demanda poderá impactar o cronograma das entregas do BMG Uni previstas na iniciativa Omnichannel, comprometendo a evolução das funcionalidades planejadas e seus respectivos marcos de entrega.",
+        "repositorios": [
+            "prcc-ddc-api",
+            "prcc-solicitacao-envio-ddc-consumer",
+            "fpva-fingerprint-api"
+        ],
+        "plano_rollback": [
+            "Primeira publicação, não necessita rollback",
+            "Variável de ambiente não necessita rollback",
+            "Criação de usuário, não necessita rollback",
+            "Criação de recurso, não necessita rollback",
+            "Criação de tópico não necessita rollback.",
+            "Deletar a tabela criada",
+            "Voltar versao anterior 1.0.0.3",
+            "voltar para a versão de postagem anterior no sensedia",
+            "Voltar para versão anterior do gateway",
+            "retornar para versão anterior da aplicação no sensedia"
+        ],
+        "riscos_identificados": "Low"
+    },
+    {
+        "gmud_id": "CHN-12757",
+        "titulo": "Testes nova rota sensedia para consistir apenas login e senha do consig",
+        "dt_criacao": "2026-07-16 06:49:11 PM",
+        "janela_execucao": {
+            "inicio": "2026-07-16 07:15:00 PM",
+            "fim": "2026-07-17 12:00:00 AM"
+        },
+        "status": "Executada Com Sucesso",
+        "tipo_mudanca": "Pré-aprovada",
+        "sistemas_afetados": [
+            "spar-jornada-vendas-bff"
+        ],
+        "descricao": "Objetivo da GMUD  Realizar testes e validação da nova rota de autenticação Sensedia para o Consignado, garantindo que a geração do token JWT passe a ocorrer utilizando somente login e senha, sem a necessidade das credenciais client_id e client_secret.     A mudança contempla a validação do comportamento da gravação de propostas para os produtos Consig Privado e INSS, assegurando a compatibilidade da nova lógica de autenticação com os processos atualmente existentes.     Por que executar a GMUD  A execução desta GMUD é necessária para validar a nova implementação disponibilizada pela API de parceiros do Banco BMG, que altera o modelo de autenticação utilizado na geração do token JWT.     O objetivo é garantir que os diferentes perfis de usuários e fluxos de negócio continuem operando corretamente após a mudança, mitigando riscos de indisponibilidade, falhas na autenticação e impactos na gravação de propostas dos produtos de consignado.     Nova rota validada:                           https://api-partners-sandbox.bancobmg.com.br/parceiros-consignado/v1/token                Impacto da GMUD  Impacto esperado: Baixo.  A mudança está relacionada exclusivamente ao processo de autenticação para obtenção do token JWT. Não há alteração de regras de negócio ou interface para o usuário final.",
+        "alteracoes_tecnicas": "Objetivo da GMUD  Realizar testes e validação da nova rota de autenticação Sensedia para o Consignado, garantindo que a geração do token JWT passe a ocorrer utilizando somente login e senha, sem a necessidade das credenciais client_id e client_secret.     A mudança contempla a validação do comportamento da gravação de propostas para os produtos Consig Privado e INSS, assegurando a compatibilidade da nova lógica de autenticação com os processos atualmente existentes.     Por que executar a GMUD  A execução desta GMUD é necessária para validar a nova implementação disponibilizada pela API de parceiros do Banco BMG, que altera o modelo de autenticação utilizado na geração do token JWT.     O objetivo é garantir que os diferentes perfis de usuários e fluxos de negócio continuem operando corretamente após a mudança, mitigando riscos de indisponibilidade, falhas na autenticação e impactos na gravação de propostas dos produtos de consignado.     Nova rota validada:                           https://api-partners-sandbox.bancobmg.com.br/parceiros-consignado/v1/token                Impacto da GMUD  Impacto esperado: Baixo.  A mudança está relacionada exclusivamente ao processo de autenticação para obtenção do token JWT. Não há alteração de regras de negócio ou interface para o usuário final.",
+        "repositorios": [
+            "spar-jornada-vendas-bff"
+        ],
+        "plano_rollback": [
+            "APAGAR RECURSO NO AMBIENTE PRD"
+        ],
+        "riscos_identificados": "Low"
+    },
+    {
+        "gmud_id": "CHN-12769",
+        "titulo": "Deploy CMSS/INFE",
+        "dt_criacao": "2026-07-17 11:44:58 AM",
+        "janela_execucao": {
+            "inicio": "2026-07-17 02:00:00 PM",
+            "fim": "2026-07-17 11:45:00 PM"
+        },
+        "status": "Executada Com Sucesso",
+        "tipo_mudanca": "Pré-aprovada",
+        "sistemas_afetados": [
+            "infe-documento-fiscal-api"
+        ],
+        "descricao": "Aplicação: infe-documento-fiscal-api Pipelines - Run 20260716.7 Versão: 1.0.5.0 Motivo: Deploy da API para os novos endpoints relatorio-fiscal",
+        "alteracoes_tecnicas": "Aplicação: infe-documento-fiscal-api Pipelines - Run 20260716.7 Versão: 1.0.5.0 Motivo: Deploy da API para os novos endpoints relatorio-fiscal",
+        "repositorios": [
+            "infe-documento-fiscal-api"
+        ],
+        "plano_rollback": [
+            "inf rollback"
+        ],
+        "riscos_identificados": "Low"
+    },
+    {
+        "gmud_id": "CHN-12777",
+        "titulo": "Deploy CMSS",
+        "dt_criacao": "2026-07-17 05:39:04 PM",
+        "janela_execucao": {
+            "inicio": "2026-07-17 05:45:00 PM",
+            "fim": "2026-07-17 11:45:00 PM"
+        },
+        "status": "Executada Com Sucesso",
+        "tipo_mudanca": "Pré-aprovada",
+        "sistemas_afetados": [
+            "cmss-backoffice-remuneracao-api"
+        ],
+        "descricao": "Aplicação: cmss-backoffice-remuneracao-api  Versão: 1.0.37.0  Versão rollback: 1.0.36.0  Card: https://bancobmg.atlassian.net/browse/CMSS-4047",
+        "alteracoes_tecnicas": "Aplicação: cmss-backoffice-remuneracao-api  Versão: 1.0.37.0  Versão rollback: 1.0.36.0  Card: https://bancobmg.atlassian.net/browse/CMSS-4047",
+        "repositorios": [
+            "cmss-backoffice-remuneracao-api"
+        ],
+        "plano_rollback": [
+            "inf rollback"
+        ],
+        "riscos_identificados": "Low"
+    },
+    {
+        "gmud_id": "CHN-12806",
+        "titulo": "Deploy CMSS",
+        "dt_criacao": "2026-07-20 04:38:54 PM",
+        "janela_execucao": {
+            "inicio": "2026-07-20 04:45:00 PM",
+            "fim": "2026-07-24 11:45:00 PM"
+        },
+        "status": "Executada Com Sucesso",
+        "tipo_mudanca": "Emergencial",
+        "sistemas_afetados": [
+            "cmss-armazena-eventos-consumer"
+        ],
+        "descricao": "Aplicação: cmss-armazena-eventos-consumer Motivo: Correção no reprocessamento de contratos.  Versão: 1.0.32.2 Pull request 134046: FIX: Ajuste pontual para reprocessar contratos de rotativo tipo_pagamento 48 - Repos Pipelines - Run 20260720.10     Tecnologia: Oracle  BASE DE DADOS : bmgapoiop  DATABASE: CMSS CMSS-3990 Reprocessamento de comissão congelada da loja 52339 - INCIDENTE  367830",
+        "alteracoes_tecnicas": "Aplicação: cmss-armazena-eventos-consumer Motivo: Correção no reprocessamento de contratos.  Versão: 1.0.32.2 Pull request 134046: FIX: Ajuste pontual para reprocessar contratos de rotativo tipo_pagamento 48 - Repos Pipelines - Run 20260720.10     Tecnologia: Oracle  BASE DE DADOS : bmgapoiop  DATABASE: CMSS CMSS-3990 Reprocessamento de comissão congelada da loja 52339 - INCIDENTE  367830",
+        "repositorios": [
+            "cmss-armazena-eventos-consumer"
+        ],
+        "plano_rollback": [
+            "Voltar a versão Anterior 1.0.32.1",
+            "NA - se trata de execução de Script"
+        ],
+        "riscos_identificados": "High"
+    },
+    {
+        "gmud_id": "CHN-12989",
+        "titulo": "Entrega Cartões 4 BMG V-360",
+        "dt_criacao": "2026-08-05 09:47:59 AM",
+        "janela_execucao": {
+            "inicio": "2026-09-08 05:30:00 PM",
+            "fim": "2026-09-09 08:00:00 PM"
+        },
+        "status": "Executada Com Sucesso",
+        "tipo_mudanca": "Normal",
+        "sistemas_afetados": [
+            "prcc-transacao-api",
+            "emct-conta-cartao-api",
+            "gefa-consulta-fatura-api",
+            "ipct-interface-conta-cartao-api"
+        ],
+        "descricao": "Visão 360  Esta alteração faz parte das evoluções previstas no projeto Omnichannel, dentro da iniciativa de Visão 360 do Cliente. O conjunto de entregas está estruturado em múltiplas fases de publicação, e esta etapa contempla especificamente os fluxos relacionados a:     Antecipação de fatura  Bloqueio e Desbloqueio de conta cartão  Contestação CNC     O objetivo desta release é ampliar a unificação dos dados e eventos de atendimento, garantindo maior consistência e visibilidade das interações do cliente por meio da plataforma Omnichannel.     Chave       Resumo  SOCT-576    [Back] Bloqueio conta cartão  SOCT-4217    [Back] Desbloqueio de conta cartão  SOCT-4653    Alterar rotas de antecipação de faturas   SOCT-1792    [BACK] - Estorno cobrança consignável",
+        "alteracoes_tecnicas": "Visão 360  Esta alteração faz parte das evoluções previstas no projeto Omnichannel, dentro da iniciativa de Visão 360 do Cliente. O conjunto de entregas está estruturado em múltiplas fases de publicação, e esta etapa contempla especificamente os fluxos relacionados a:     Antecipação de fatura  Bloqueio e Desbloqueio de conta cartão  Contestação CNC     O objetivo desta release é ampliar a unificação dos dados e eventos de atendimento, garantindo maior consistência e visibilidade das interações do cliente por meio da plataforma Omnichannel.     Chave       Resumo  SOCT-576    [Back] Bloqueio conta cartão  SOCT-4217    [Back] Desbloqueio de conta cartão  SOCT-4653    Alterar rotas de antecipação de faturas   SOCT-1792    [BACK] - Estorno cobrança consignável",
+        "repositorios": [
+            "prcc-transacao-api",
+            "emct-conta-cartao-api",
+            "gefa-consulta-fatura-api",
+            "ipct-interface-conta-cartao-api"
+        ],
+        "plano_rollback": [
+            "Voltar versão anterior 1.17.0.5",
+            "Voltar versão anterior 1.10.0.1",
+            "Voltar versao anterior 1.6.2.4",
+            "Voltar versão anterior 1.1.0.1"
+        ],
+        "riscos_identificados": "Low"
+    },
+    {
+        "gmud_id": "CHN-13462",
+        "titulo": "Fluxo de PID",
+        "dt_criacao": "2026-09-01 06:39:02 PM",
+        "janela_execucao": {
+            "inicio": "2026-09-10 05:30:00 PM",
+            "fim": "2026-09-11 08:00:00 PM"
+        },
+        "status": "Executada Com Sucesso",
+        "tipo_mudanca": "Normal",
+        "sistemas_afetados": [
+            "ivps-autenticacao-pid-api"
+        ],
+        "descricao": "Visão 360  Esta alteração faz parte das evoluções previstas no projeto Omnichannel, dentro da iniciativa de Visão 360 do Cliente. O conjunto de entregas está estruturado em múltiplas fases de publicação, e esta etapa contempla especificamente os fluxos relacionados a:     Autenticação via PID na plataforma do visão 360    O objetivo desta release disponibilizar a funcionalidade de autenticação via pid  e ampliar a unificação dos dados e eventos de atendimento, garantindo maior consistência e visibilidade das interações do cliente por meio da plataforma Omnichannel.     https://bancobmg.atlassian.net/browse/SOCT-4030  https://bancobmg.atlassian.net/browse/SOCT-4734  https://bancobmg.atlassian.net/browse/SOCT-4740  https://bancobmg.atlassian.net/browse/SOCT-4032  https://bancobmg.atlassian.net/browse/SOCT-4031  https://bancobmg.atlassian.net/browse/SOCT-4904  https://bancobmg.atlassian.net/browse/SOCT-4840",
+        "alteracoes_tecnicas": "Visão 360  Esta alteração faz parte das evoluções previstas no projeto Omnichannel, dentro da iniciativa de Visão 360 do Cliente. O conjunto de entregas está estruturado em múltiplas fases de publicação, e esta etapa contempla especificamente os fluxos relacionados a:     Autenticação via PID na plataforma do visão 360    O objetivo desta release disponibilizar a funcionalidade de autenticação via pid  e ampliar a unificação dos dados e eventos de atendimento, garantindo maior consistência e visibilidade das interações do cliente por meio da plataforma Omnichannel.     https://bancobmg.atlassian.net/browse/SOCT-4030  https://bancobmg.atlassian.net/browse/SOCT-4734  https://bancobmg.atlassian.net/browse/SOCT-4740  https://bancobmg.atlassian.net/browse/SOCT-4032  https://bancobmg.atlassian.net/browse/SOCT-4031  https://bancobmg.atlassian.net/browse/SOCT-4904  https://bancobmg.atlassian.net/browse/SOCT-4840",
+        "repositorios": [
+            "ivps-autenticacao-pid-api"
+        ],
+        "plano_rollback": [
+            "O sistema ainda não é utilizado em ambiente produtivo, sendo assim, não necessita aplicar rollback",
+            "Por ser variavel de ambiente, não necessita rollback",
+            "Por ser variável de ambiente, nao necessita de rollback",
+            "Deletar collections criadas via mongodb compass"
+        ],
+        "riscos_identificados": "Low"
+    },
+    {
+        "gmud_id": "CHN-13772",
+        "titulo": "Visão 360 sprint 25 - backend",
+        "dt_criacao": "2026-09-21 02:46:44 PM",
+        "janela_execucao": {
+            "inicio": "2026-09-22 05:30:00 PM",
+            "fim": "2026-09-23 08:00:00 PM"
+        },
+        "status": "",
+        "tipo_mudanca": "Normal",
+        "sistemas_afetados": [
+            "ceat-propostas-bff",
+            "ceat-seguro-360-bff",
+            "ceat-emprestimo-bff",
+            "atdm-protocolo-ocorrencia-api",
+            "ceat-bff-central-atendimento"
+        ],
+        "descricao": "Visão 360  Esta alteração faz parte das evoluções previstas no projeto Omnichannel, dentro da iniciativa de Visão 360 do Cliente. O conjunto de entregas está estruturado em múltiplas fases de publicação, e esta etapa contempla especificamente os fluxos relacionados a:     Consulta de emprestimos  Simulação e emissão de boleto   Geração de ocorrencias   Acompanhamento de prospotas        O objetivo desta release é disponibilizar a funcionalidade de empréstimos, propostas , ocorrências e ampliar a unificação dos dados e eventos de atendimento, garantindo maior consistência e visibilidade das interações do cliente por meio da plataforma Omnichannel.     https://bancobmg.atlassian.net/browse/SOCT-5428  Teste: 6089     https://bancobmg.atlassian.net/browse/SOCT-5062  Teste: 5391     https://bancobmg.atlassian.net/browse/SOCT-4985  Teste: 5492     https://bancobmg.atlassian.net/browse/SOCT-5517  Teste: 5718, 5692, 5651, 5625     https://bancobmg.atlassian.net/browse/SOCT-5501  Teste: 5706, 5684, 5637, 5617     https://bancobmg.atlassian.net/browse/SOCT-5512  Teste: 5777     https://bancobmg.atlassian.net/browse/SOCT-5502  Teste: 5753     https://bancobmg.atlassian.net/browse/SOCT-5774  Teste: 5961",
+        "alteracoes_tecnicas": "Visão 360  Esta alteração faz parte das evoluções previstas no projeto Omnichannel, dentro da iniciativa de Visão 360 do Cliente. O conjunto de entregas está estruturado em múltiplas fases de publicação, e esta etapa contempla especificamente os fluxos relacionados a:     Consulta de emprestimos  Simulação e emissão de boleto   Geração de ocorrencias   Acompanhamento de prospotas        O objetivo desta release é disponibilizar a funcionalidade de empréstimos, propostas , ocorrências e ampliar a unificação dos dados e eventos de atendimento, garantindo maior consistência e visibilidade das interações do cliente por meio da plataforma Omnichannel.     https://bancobmg.atlassian.net/browse/SOCT-5428  Teste: 6089     https://bancobmg.atlassian.net/browse/SOCT-5062  Teste: 5391     https://bancobmg.atlassian.net/browse/SOCT-4985  Teste: 5492     https://bancobmg.atlassian.net/browse/SOCT-5517  Teste: 5718, 5692, 5651, 5625     https://bancobmg.atlassian.net/browse/SOCT-5501  Teste: 5706, 5684, 5637, 5617     https://bancobmg.atlassian.net/browse/SOCT-5512  Teste: 5777     https://bancobmg.atlassian.net/browse/SOCT-5502  Teste: 5753     https://bancobmg.atlassian.net/browse/SOCT-5774  Teste: 5961",
+        "repositorios": [
+            "ceat-propostas-bff",
+            "ceat-seguro-360-bff",
+            "ceat-emprestimo-bff",
+            "atdm-protocolo-ocorrencia-api",
+            "ceat-bff-central-atendimento"
+        ],
+        "plano_rollback": [
+            "Por ser variável de ambiente, não necessita de rollback",
+            "Voltar versão anterior 1.0.0.2",
+            "Voltar versao anterior 1.0.0.2",
+            "Voltar versão anterior 1.1.0.15",
+            "Voltar versão anterior 1.1.0.9",
+            "Por ser apenas variável de ambiente, não necessita rollback",
+            "Deletar a tabela criada"
+        ],
+        "riscos_identificados": "Low"
+    }
+]
