@@ -1,0 +1,55 @@
+{
+  "name": "get_jira_task_metadata",
+  "description": "Consulta uma task no Jira pelo identificador ou pela URL de navegação e retorna título, tipo, prioridade, descrição e links de pull request.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "task_id": {
+        "type": "string",
+        "description": "Chave Jira (por exemplo, SPAD-2487) ou URL da task (por exemplo, https://bancobmg.atlassian.net/browse/SPAD-2487)."
+      }
+    },
+    "required": ["task_id"]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "task_id": {
+        "type": "string",
+        "description": "Chave da issue no Jira."
+      },
+      "titulo": {
+        "type": "string",
+        "description": "Resumo/título da task."
+      },
+      "tipo_task": {
+        "type": "string",
+        "description": "Tipo da issue, como História ou Bug."
+      },
+      "prioridade": {
+        "type": "string",
+        "description": "Prioridade configurada no Jira."
+      },
+      "descricao": {
+        "type": "string",
+        "description": "Descrição da task convertida para texto."
+      },
+      "links_pull_requests": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "format": "uri"
+        },
+        "description": "Links de pull requests encontrados na descrição, em campos Jira (incluindo Link PRs (UAT)), nos remote links ou nos dados Dev Status da task."
+      }
+    },
+    "required": [
+      "task_id",
+      "titulo",
+      "tipo_task",
+      "prioridade",
+      "descricao",
+      "links_pull_requests"
+    ]
+  }
+}
