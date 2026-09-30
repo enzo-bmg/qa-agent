@@ -24,6 +24,11 @@ invoking the agent.
 | Variable | Required | Description |
 | --- | --- | --- |
 | `LOCAL_DEV` | No | Set to `1` to use `.env.local` instead of AgentCore Identity |
+| `DEV_INSECURE_SSL` | No | **DEV LOCAL APENAS.** Set `true` para desabilitar validação SSL no boto3 (contorno do proxy Netskope do BMG, orientado pelo Henrique Romão/BMG por não ser possível fornecer o CA bundle). **NUNCA usar em produção** — manter ausente/`false` em prod. |
+| `BEDROCK_MODEL_ID` | No | Override do model id do Bedrock (default: Claude Sonnet 4.5). |
+| `AWS_REGION` | No | Região AWS (default: `us-east-1`). |
+
+> ⚠️ **Sobre `DEV_INSECURE_SSL`:** só existe porque o proxy do BMG (Netskope) faz SSL inspection e o time de rede não fornece o CA bundle (.pem). Orientação do Henrique Romão (BMG) para uso **exclusivo em ambiente local de dev**. O código só desliga a validação SSL quando a flag é `true` — em produção a flag fica ausente e a validação SSL é normal. Não commitar `DEV_INSECURE_SSL=true` em nenhum ambiente compartilhado (fica no `.env.local`, que é gitignored).
 
 # Developing locally
 
