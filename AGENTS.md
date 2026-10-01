@@ -30,11 +30,12 @@ Tags defined in `agentcore.json` flow through to deployed CloudFormation resourc
 
 ```
 myProject/
+├── .env                    # Local app/script settings and secrets — gitignored
+├── .env.example            # Template for the root .env
 ├── AGENTS.md               # This file — AI coding assistant context
 ├── agentcore/
 │   ├── agentcore.json      # Main project config (AgentCoreProjectSpec)
 │   ├── aws-targets.json    # Deployment targets (account + region)
-│   ├── .env.local          # Secrets — API keys (gitignored)
 │   ├── .llm-context/       # TypeScript type definitions for AI assistants
 │   │   ├── README.md       # Guide to using schema files
 │   │   ├── agentcore.ts    # AgentCoreProjectSpec types
@@ -43,6 +44,9 @@ myProject/
 ├── app/                    # Agent application code
 └── evaluators/             # Custom evaluator code (if any)
 ```
+
+Use the project-root `.env` as the single source for local application and script settings. The optional
+`agentcore/.env.local` is separate CLI-specific configuration and is not used by the agent's `boto3` session.
 
 ## Schema Reference
 

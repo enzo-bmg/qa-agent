@@ -3,7 +3,7 @@ Tools locais do QA Agent BMG.
 
 Integra:
 - ChromaDB (Knowledge Base local) para retrieve/RAG
-- Lambdas mock (get_gmud_metadata, get_rollback_history, get_score_info)
+- Lambdas locais para consulta de tasks Jira e histórico de rollbacks
 
 Em produção, essas tools serão substituídas por:
 - Bedrock Knowledge Base (retrieve via bedrock-agent-runtime)
@@ -31,7 +31,8 @@ import boto3
 BEDROCK_KB_ID = os.getenv("BEDROCK_KB_ID", "X8RYNPZISY")
 USE_BEDROCK_KB = os.getenv("USE_BEDROCK_KB", "true").lower() == "true"
 AWS_REGION = os.getenv("AWS_REGION", "us-east-1")
-AWS_PROFILE = os.getenv("AWS_PROFILE", "ciandt_teste")
+AWS_PROFILE = os.getenv("AWS_PROFILE")
+VERIFY_SSL = os.getenv("VERIFY_SSL", "true").lower() == "true"
 
 # ChromaDB path (fallback)
 CHROMA_DB_PATH = PROJECT_ROOT / "chroma_db"
@@ -44,7 +45,7 @@ CHROMA_DB_PATH = PROJECT_ROOT / "chroma_db"
 def _get_bedrock_kb_client():
     """Cria client do bedrock-agent-runtime."""
     session = boto3.Session(profile_name=AWS_PROFILE, region_name=AWS_REGION)
-    return session.client("bedrock-agent-runtime")
+    return session.client("bedrock-agent-runtime", verify=VERIFY_SSL)
 
 
 def _retrieve_from_bedrock_kb(query: str, n_results: int = 3) -> str:
@@ -243,13 +244,24 @@ def get_code_diff(repo: str, change_id: str = "") -> str:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
+# Tool 6: Jira task lookup
+# ─────────────────────────────────────────────────────────────────────────────
+
+@tool
+def get_jira_task_metadata(task_id: str) -> str:
+    """Consulta uma task Jira pela chave ou URL e retorna seus dados principais."""
+    from get_jira_task_metadata.handler import lambda_handler
+    result = lambda_handler({"task_id": task_id}, None)
+    return result["body"]
+
+
+# ─────────────────────────────────────────────────────────────────────────────
 # Lista de todas as tools locais
 # ─────────────────────────────────────────────────────────────────────────────
 
 LOCAL_TOOLS = [
     retrieve_knowledge_base,
-    get_gmud_metadata,
     get_rollback_history,
-    get_score_info,
     get_code_diff,
+    get_jira_task_metadata,
 ]

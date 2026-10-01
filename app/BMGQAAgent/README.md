@@ -23,9 +23,16 @@ invoking the agent.
 
 | Variable | Required | Description |
 | --- | --- | --- |
-| `LOCAL_DEV` | No | Set to `1` to use `.env.local` instead of AgentCore Identity |
+| `LOCAL_DEV` | No | Set to `1` in the project-root `.env` (or shell) to load local settings from that file |
+| `AWS_ACCESS_KEY_ID` | For local credentials | Temporary AWS access key, stored only in the project-root `.env` |
+| `AWS_SECRET_ACCESS_KEY` | For local credentials | Temporary AWS secret key, stored only in the project-root `.env` |
+| `AWS_SESSION_TOKEN` | For temporary credentials | Session token matching the temporary key pair |
+| `AWS_REGION` | No | AWS region; defaults to `us-east-1` |
 
 # Developing locally
+
+Use the single `.env` file in the project root for local agent and script settings.
+It is ignored by Git. Set `LOCAL_DEV=1` in that file to enable its AWS credentials.
 
 If installation was successful, a virtual environment is already created with dependencies installed.
 

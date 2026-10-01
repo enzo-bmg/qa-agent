@@ -29,14 +29,6 @@
       "authorizerType": "NONE",
       "targets": [
         {
-          "name": "get-gmud-metadata",
-          "targetType": "lambdaFunctionArn",
-          "lambdaFunctionArn": {
-            "lambdaArn": "arn:aws:lambda:us-east-1:ACCOUNT_ID:function:bmg-get-gmud-metadata",
-            "toolSchemaFile": "tools/get_gmud_metadata.json"
-          }
-        },
-        {
           "name": "get-rollback-history",
           "targetType": "lambdaFunctionArn",
           "lambdaFunctionArn": {
@@ -45,11 +37,11 @@
           }
         },
         {
-          "name": "get-score-info",
+          "name": "get-jira-task-metadata",
           "targetType": "lambdaFunctionArn",
           "lambdaFunctionArn": {
-            "lambdaArn": "arn:aws:lambda:us-east-1:ACCOUNT_ID:function:bmg-get-score-info",
-            "toolSchemaFile": "tools/get_score_info.json"
+            "lambdaArn": "arn:aws:lambda:us-east-1:ACCOUNT_ID:function:bmg-get-jira-task-metadata",
+            "toolSchemaFile": "tools/get_jira_task_metadata.json"
           }
         }
       ]

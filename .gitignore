@@ -14,7 +14,7 @@ node_modules/
 agentcore/.cli/
 
 # Env (pode ter secrets futuros)
-# agentcore/.env.local  -- manter por agora (não tem secrets)
+.env
 
 # OS
 .DS_Store
