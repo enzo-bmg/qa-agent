@@ -1,4 +1,5 @@
 import json
+import unicodedata
 from typing import Any
 from collections import OrderedDict
 from strands import Agent, tool
@@ -31,14 +32,15 @@ O time de QA revisa requisitos e critérios de aceite registrados nas tasks ante
 Quando receber uma task Jira (JSON exportado ou descrição), siga esta ordem:
 
 1. Identifique a issue pela key e pelo summary. Interprete `description` como conteúdo estruturado do Jira; preserve títulos, listas, regras e critérios BDD, mesmo quando vier em Atlassian Document Format.
+    Se receber uma chave Jira ou URL sem os dados da issue, chame `get_jira_task_metadata` para consultar a task antes de analisar. Se a consulta falhar, informe o erro e peça os dados da issue.
 2. Extraia objetivo, contexto atual, regras de negócio, critérios de aceite, detalhes técnicos, riscos, dependências, sistemas e integrações citados explicitamente.
 3. Diferencie fatos da task de inferências. `project`, `labels`, `priority`, `issuetype` e `status` são metadados úteis, mas não substituem sistemas, risco ou tipo de mudança da GMUD. Não trate status da issue como status da GMUD.
 4. Consulte `retrieve_knowledge_base` e `get_rollback_history` para complementar a análise quando houver sistemas explicitamente identificados. Deixe claro quando não houver correspondência ou evidência.
 5. Proponha cenários rastreáveis aos critérios/regras da task e liste dúvidas que o QA precisa esclarecer antes da homologação.
 
-Não chame `get_gmud_metadata` nem `get_score_info` como etapa obrigatória: a GMUD ainda pode não existir. Só use essas tools quando o usuário fornecer uma GMUD existente e pedir explicitamente uma análise dela. Não invente `gmud_id`, janela de execução, tipo/status da GMUD ou plano de rollback.
+Não consulte GMUD nem score de risco da GMUD. Não invente `gmud_id`, janela de execução, tipo/status da GMUD ou plano de rollback.
 
-Se o usuário fornecer somente uma Jira key, explique que você não tem uma tool de leitura direta do Jira nesta execução e peça o JSON ou a descrição da issue. Nunca diga que consultou a issue sem ter recebido seus dados.
+Não consulte metadados de GMUD nem score de risco de GMUD. A consulta de uma task Jira deve ser feita pela tool `get_jira_task_metadata`; nunca diga que consultou a issue sem receber os dados da tool ou do usuário.
 
 ## Formato de saída — 2 NÍVEIS
 
@@ -112,6 +114,7 @@ CADA cenário de teste DEVE ter o campo "Baseado em" que explica POR QUE existe:
 - Direto e objetivo — QAs são técnicos
 - Use linguagem de QA (caso de teste, pré-condição, resultado esperado, critério de aceite)
 - Quando identificar risco alto, destaque com justificativa baseada em dados concretos
+- Não use emojis, emoticons ou símbolos decorativos (por exemplo, ✅, ❌ ou 👋), mesmo que apareçam nos dados de entrada. Use rótulos textuais como [OK], [FALHA] e [PENDENTE].
 """
 
 
@@ -265,6 +268,15 @@ def _is_inline_function_call(event: dict) -> bool:
     return tool_use is not None and tool_use.get("name") in _INLINE_FUNCTION_NAMES
 
 
+def _remove_emoji(text: str) -> str:
+    return "".join(
+        char for char in text
+        if unicodedata.category(char) != "So"
+        and not 0x1F3FB <= ord(char) <= 0x1F3FF
+        and ord(char) not in (0x200D, 0xFE0E, 0xFE0F, 0x20E3)
+    )
+
+
 
 @app.entrypoint
 async def invoke(payload, context):
@@ -285,6 +297,9 @@ async def invoke(payload, context):
         cbs = event["event"].get("contentBlockStart")
         if cbs is not None and not cbs.get("start"):
             continue
+        delta = event["event"].get("contentBlockDelta", {}).get("delta", {})
+        if isinstance(delta.get("text"), str):
+            delta["text"] = _remove_emoji(delta["text"])
         yield event
 
 

@@ -378,8 +378,7 @@ def lambda_handler(event, context):
             }, ensure_ascii=False)
         }
 
-    mode = os.getenv("JIRA_MODE", "mock").strip().lower()
-    mode = "api"
+    mode = os.getenv("JIRA_MODE", "api").strip().lower()
     try:
         if mode == "mock":
             task = MOCK_TASKS.get(task_id)

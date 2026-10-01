@@ -6,11 +6,12 @@ This project was created with the [AgentCore CLI](https://github.com/aws/agentco
 
 ```
 my-project/
+├── .env                    # Local configuration and secrets (gitignored)
+├── .env.example            # Environment variable template
 ├── AGENTS.md               # AI coding assistant context
 ├── agentcore/
 │   ├── agentcore.json      # Project config (agents, memories, credentials, gateways, evaluators)
 │   ├── aws-targets.json    # Deployment targets (account + region)
-│   ├── .env.local          # Secrets — API keys (gitignored)
 │   ├── .llm-context/       # TypeScript type definitions for AI assistants
 │   │   ├── agentcore.ts    # AgentCoreProjectSpec types
 │   │   └── aws-targets.ts  # Deployment target types
@@ -29,6 +30,10 @@ my-project/
 - **Docker** (only for Container build agents)
 
 ### Development
+
+Copy `.env.example` to `.env` in the project root and fill in local settings. Set
+`LOCAL_DEV=1` there to make the local agent load AWS credentials from that same file.
+The root `.env` is shared with local scripts and must never be committed.
 
 Run your agent locally:
 
@@ -76,6 +81,18 @@ agentcore deploy
 Edit the JSON files in `agentcore/` to configure your project. See `agentcore/.llm-context/` for type definitions and validation constraints.
 
 The project uses a **flat resource model** — agents, memories, credentials, gateways, evaluators, and policies are top-level arrays in `agentcore.json`. Resources are independent; agents discover memories and credentials at runtime via environment variables or SDK calls.
+
+### SSL Verification
+
+`VERIFY_SSL` controls TLS certificate verification for the Bedrock Runtime and Bedrock Agent Runtime clients. It defaults to `true` when unset, which keeps certificate validation enabled. The value is case-insensitive: only `true` enables verification; any other value disables it.
+
+Set it in the project-root `.env` when local development is enabled:
+
+```dotenv
+VERIFY_SSL=true
+```
+
+The option to set `VERIFY_SSL=false` was suggested by Henrique Romão, and is intended **only for the development environment** when troubleshooting a known certificate issue. Do not use it in production or other shared environments: disabling verification weakens protection against intercepted connections.
 
 ## Resources
 
